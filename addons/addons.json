@@ -2,19 +2,19 @@
   "addons": [
     {
       "id": "DemoAddon",
-      "version": "0.15"
+      "version": "0.0.0.15"
     },
     {
       "id": "SpyCitizenAddon",
-      "version": "0.64"
+      "version": "0.0.0.64"
     },
     {
       "id": "ExecTimerAddon",
-      "version": "0.37"
+      "version": "0.0.0.37"
     },
     {
       "id": "QuickSheetAddon",
-      "version": "0.21"
+      "version": "0.0.0.21"
     }
   ]
 }
