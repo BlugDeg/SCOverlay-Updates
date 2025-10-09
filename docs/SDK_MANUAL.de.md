@@ -19,7 +19,7 @@
     <path d="M12 3C12 3 9 6 9 9C9 12 12 17 12 17" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
   <h1>SCOverlay Addon SDK</h1>
-  <p><strong>Umfassendes Entwicklerhandbuch v2.2</strong></p>
+  <p><strong>Umfassendes Entwicklerhandbuch v2.3</strong></p>
   <br>
 </div>
 
@@ -139,59 +139,26 @@ Hier ist eine detaillierte Aufschlüsselung aller Methoden, die dir über die `I
 ### Menü- und UI-Steuerung
 -   **`void TakeMenuControl(IAddon addon, Action? onBack)`**
     *   **Zweck:** Übernimmt die exklusive Kontrolle über das Hauptmenü, um eigene Untermenüs zu erstellen.
-    *   **Analyse:** Ein mächtiger Befehl an die `OverlayForm`. Er signalisiert: "Verstecke alle anderen Buttons und zeige nur noch die, die ich jetzt über `GetMainMenuButtons()` liefere." Der `onBack`-Callback wird an den "Zurück"-Button gebunden.
-    *   **Best Practice:**
-        ```csharp
-        private bool _isInSubMenu = false;
-        
-        public IEnumerable<AddonButton> GetMainMenuButtons()
-        {
-            if (!_isInSubMenu) {
-                yield return new AddonButton("root", () => "Mein Menü", () => {
-                    _isInSubMenu = true;
-                    _host?.TakeMenuControl(this, GoBack);
-                });
-            } else {
-                yield return new AddonButton("action1", () => "Aktion 1", () => { /* ... */ });
-            }
-        }
-        
-        private void GoBack() {
-            _isInSubMenu = false;
-            _host?.ReleaseMenuControl();
-        }
-        ```
-
+-   **`void ReleaseMenuControl()`**
+    *   **Zweck:** Gibt die Kontrolle an das Hauptmenü zurück.
 -   **`void InvalidateOverlay()`**
-    *   **Zweck:** Zwingt das Overlay zu einem sofortigen Neuzeichnen.
-    *   **Analyse:** Ruft intern die `UpdateThemedWindow()`-Methode der Hauptform auf. Dies ist unerlässlich, wenn sich ein visueller Zustand ändert, der von einer `Func<string>` in deinen Buttons abhängt.
-    *   **Best Practice:**
-        ```csharp
-        private bool _isToggled = false;
+    *   **Zweck:** Zwingt das Overlay zu einem sofortigen Neuzeichnen. Essenziell, um UI-Änderungen sichtbar zu machen.
 
-        private void OnToggle() {
-            _isToggled = !_isToggled;
-            _host?.Window.ShowNotification($"Status ist jetzt: {_isToggled}");
-            _host?.InvalidateOverlay(); // Wichtig, damit der Button-Text aktualisiert wird!
-        }
-        ```
-        
 ### Zugriff auf Kern-Dienste
 -   **`ISoundService Sound { get; }`**
-    *   **`PlayFile(string path, float volume = 1.0f)`**: Spielt eine Sound-Datei asynchron in einem Hintergrundthread ab, um die UI niemals zu blockieren.
+    *   **`PlayFile(string path, float volume = 1.0f)`**: Spielt eine Sound-Datei asynchron in einem Hintergrundthread ab.
 -   **`IWindowService Window { get; }`**
-    *   **`ShowNotification(string message)`**: Zeigt eine kurze, nicht-blockierende "Toast"-Benachrichtigung an.
-    *   **`CreateThemedWindow(string title)`**: Erstellt eine leere `Form`, die automatisch das aktuelle Overlay-Theme erbt. Ideal für komplexe, eigene UI-Fenster.
+    *   **`ShowNotification(string message)`**: Zeigt eine kurze "Toast"-Benachrichtigung an.
+    *   **`CreateThemedWindow(string title)`**: Erstellt eine leere `Form`, die automatisch das aktuelle Overlay-Theme erbt.
 
 ### Persistenz
 -   **`string GetSetting(string key, string defaultValue)` & `void SetSetting(string key, string value)`**
-    *   **Zweck:** Ein einfaches Schlüssel-Wert-Speichersystem für dein Addon.
-    *   **Analyse:** Die Daten werden in der zentralen `settings.json`-Datei von SCOverlay gespeichert. Dies ist für einfache Konfigurationen gedacht. Für komplexe Daten (wie Datenbanken) solltest du einen eigenen Speicherort im `%AppData%\SCOverlay\AddonData`-Ordner verwenden.
-    *   **Best Practice:** Verwende immer ein eindeutiges Präfix für deine Schlüssel, um Konflikte mit anderen Addons zu vermeiden (z.B. `MyAddon_ApiToken`).
+    *   **Zweck:** Ein einfaches Schlüssel-Wert-Speichersystem, das in der zentralen `settings.json`-Datei gespeichert wird.
+    *   **Best Practice:** Verwende immer ein eindeutiges Präfix für deine Schlüssel (z.B. `MyAddon_ApiToken`).
 
 ### Logging & Lokalisierung
 -   **`LogInfo(string message)` & `LogError(string message, Exception? ex = null)`**
-    *   **Zweck:** Schreibt standardisierte Einträge in die `debug.log`-Datei. Dein bester Freund bei der Fehlersuche!
+    *   **Zweck:** Schreibt standardisierte Einträge in die `debug.log`-Datei (`%AppData%\SCOverlay\debug.log`). Dein wichtigstes Werkzeug bei der Fehlersuche!
 -   **`string T(string localizationKey)`**
     *   **Zweck:** Greift auf das zentrale Übersetzungssystem zu.
 
@@ -200,9 +167,9 @@ Hier ist eine detaillierte Aufschlüsselung aller Methoden, die dir über die `I
     *   **Zweck:** Gibt dir Lesezugriff auf die Farben und Schriftarten des aktiven Themes für ein konsistentes Erscheinungsbild.
 
 ### Performance Management
--   **`void RequestHighPerformanceMode(IAddon addon, string reason)` & `void ReleaseHighPerformanceMode(IAddon addon)`**
-    *   **Zweck:** Kommuniziert mit dem "Performance Watchdog".
-    *   **Best Practice:** IMMER in einem `try...finally`-Block verwenden, um sicherzustellen, dass die Ausnahme wieder freigegeben wird!
+-   **`void RequestHighPerformanceMode(...)` & `void ReleaseHighPerformanceMode(...)`**
+    *   **Zweck:** Kommuniziert mit dem "Performance Watchdog", um eine temporäre Ausnahme für rechenintensive Aufgaben zu erhalten.
+    *   **Best Practice:** IMMER in einem `try...finally`-Block verwenden!
 
 <div class="note">
 <strong>Fehlt dir eine Schnittstelle?</strong><br>
@@ -213,61 +180,24 @@ Du hast eine Idee für eine neue Funktion, die der Host bereitstellen sollte? Fa
 
 ## Kapitel 5: Fortgeschrittene Konzepte & Best Practices
 
-### Lebenszyklus eines Addons
-1.  **Laden:** Der `AddonManager` findet deine DLL.
-2.  **Instanziierung:** Eine Instanz deiner `IAddon`-Klasse wird erstellt.
-3.  **Initialisierung:** `Initialize(host)` wird aufgerufen. Ab jetzt ist dein Addon "lebendig".
-4.  **Betrieb:** Der Kern ruft Methoden wie `GetMainMenuButtons()` oder `Draw()` bei Bedarf auf.
-5.  **Shutdown:** Wenn das Addon entladen wird, wird `Shutdown()` aufgerufen.
+### Lizenzierung für Premium-Addons: Ein geführter Prozess
+Du möchtest ein Addon entwickeln, das exklusiv für Unterstützer verfügbar ist? Das SCOverlay-System ist genau dafür ausgelegt. Dies ist ein **kollaborativer Prozess**.
 
-### Event-basierte Programmierung: `OnPaintOverlay`
-Als Alternative zu `Draw()` kannst du Events abonnieren.
-```csharp
-public void Initialize(IAddonHost host) {
-    _host = host;
-    _host.OnPaintOverlay += MyCustomDrawMethod;
-}
+**Der Prozess sieht wie folgt aus:**
+1.  **Entwickle dein Addon:** Konzentriere dich zuerst auf die Entwicklung.
+2.  **Kontaktiere uns:** Wenn dein Addon fertig ist, kontaktiere den **Creator (BlugDeg)**, um dein Projekt vorzustellen. Der beste Weg dafür ist, ein neues Issue auf GitHub zu erstellen (siehe Kapitel 7).
+3.  **Abstimmung & Erstellung:** Wir arbeiten mit dir zusammen. Anschließend wird der Creator eine neue, einzigartige **`LicenseId`** für dein Addon auf dem Lizenz-Server erstellen und in die Kernanwendung integrieren.
+4.  **Integration in dein Addon:** Du erhältst die offizielle ID von uns. Erst jetzt fügst du das Attribut zu deiner Addon-Klasse hinzu.
+    ```csharp
+    [Addon(LicenseId = "VomCreatorErhalteneID")]
+    public class MyPremiumAddon : IAddon { /* ... */ }
+    ```
 
-private void MyCustomDrawMethod(Graphics g, Rectangle bounds) {
-    g.DrawString("Gezeichnet via Event!", new Font("Arial", 12), Brushes.Cyan, bounds.Location);
-}
-
-public void Shutdown() {
-    if (_host != null) {
-        _host.OnPaintOverlay -= MyCustomDrawMethod; // WICHTIG: Immer deabonnieren!
-    }
-}
-```
-
-### Erstellen eigener Fenster
-Nutze `CreateThemedWindow`, um komplexe UIs zu bauen.
-```csharp
-private Form? _myConfigWindow;
-
-private void OpenConfig() {
-    if (_myConfigWindow != null && !_myConfigWindow.IsDisposed) {
-        _myConfigWindow.Activate();
-        return;
-    }
-    _myConfigWindow = _host.Window.CreateThemedWindow("Meine Konfiguration");
-    
-    var myButton = new Button { Text = "Klick mich", Dock = DockStyle.Top };
-    myButton.Click += (s, e) => { /* ... */ };
-    
-    _myConfigWindow.Controls.Add(myButton);
-    _myConfigWindow.Show();
-}
-
-public void Shutdown() {
-    _myConfigWindow?.Dispose(); // WICHTIG: Aufräumen!
-}
-```
-
-### Lizenzierung für Premium-Addons
-Füge einfach das `Addon`-Attribut mit einer `LicenseId` zu deiner Klasse hinzu. Der Kern kümmert sich um den Rest.
-```csharp
-[Addon(LicenseId = "MeinSuperAddon")]
-public class MyPremiumAddon : IAddon { /* ... */ }```
+### Dos & Don'ts: Häufige Fehler vermeiden
+-   ✅ **Ressourcen freigeben:** Implementiere `IDisposable` für eigene Fenster und rufe `Dispose()` in deiner `Shutdown()`-Methode auf.
+-   ✅ **Events deabonnieren:** Deabonniere Events wie `_host.OnPaintOverlay` in `Shutdown()`, um Speicherlecks zu verhindern.
+-   ❌ **Blockiere niemals `Draw()`:** Keine Dateioperationen, Netzwerkzugriffe oder lange Schleifen in der `Draw`-Methode.
+-   ❌ **Gehe nicht von einem UI-Thread aus:** Nutze `meinFenster.BeginInvoke(...)`, um UI-Elemente sicher aus anderen Threads zu aktualisieren.
 
 ---
 
@@ -281,9 +211,9 @@ Hier sind die häufigsten Stolpersteine und wie du sie schnell aus dem Weg räum
 2.  **"Copy Local" ist auf "True" gesetzt.**
     *   **Lösung:** Setze in Visual Studio die Eigenschaft **"Copy Local"** für die `SCOverlay.API`-Referenz auf **"Nein" (False)**.
 3.  **Dein Addon verursacht einen Fehler beim Start.**
-    *   **Lösung:** Schaue in die `debug.log` (`%AppData%\SCOverlay\debug.log`). Wenn in deiner `Initialize`-Methode ein Fehler auftritt, wird das Laden abgebrochen.
+    *   **Lösung:** Schaue in die `debug.log` (`%AppData%\SCOverlay\debug.log`). Ein Fehler in `Initialize` bricht das Laden ab.
 
-### Problem: "Mein Button-Text (oder eine andere UI-Änderung) wird nicht aktualisiert!"
+### Problem: "Mein Button-Text wird nicht aktualisiert!"
 *   **Ursache:** Du hast dem Overlay nicht mitgeteilt, dass es sich neu zeichnen soll.
 *   **Lösung:** Rufe **immer** `_host?.InvalidateOverlay();` auf, nachdem du einen Zustand geändert hast, der die Anzeige beeinflusst.
 
@@ -294,9 +224,14 @@ Hier sind die häufigsten Stolpersteine und wie du sie schnell aus dem Weg räum
     myLabel.BeginInvoke((Action)(() => { myLabel.Text = "Neuer Text"; }));
     ```
 
-### Problem: "Mein Addon verschwindet plötzlich während der Nutzung!"
+### Problem: "Mein Addon verschwindet plötzlich!"
 *   **Ursache:** Der **Performance Watchdog** hat zugeschlagen, weil dein Addon zu viel CPU-Last verursacht hat.
 *   **Lösung:** Wenn die Last kurz und gewollt ist, nutze `RequestHighPerformanceMode`. Wenn sie ungewollt ist, optimiere deinen Code (besonders die `Draw`-Methode!).
+
+<div class="note">
+<strong>Pro-Tipp: Dein persönlicher Code-Assistent</strong><br>
+Du kannst das gesamte Handbuch oder Teile davon kopieren und in eine moderne KI wie Gemini oder ChatGPT einfügen. Beschreibe dein Problem oder was du bauen möchtest, und die KI kann dir basierend auf den Informationen in diesem Handbuch präzise Code-Beispiele und Lösungen für dein spezifisches Problem generieren. Nutze sie als deinen persönlichen Assistenten!
+</div>
 
 ---
 
@@ -307,13 +242,19 @@ Hier sind die häufigsten Stolpersteine und wie du sie schnell aus dem Weg räum
 ### Wo du Hilfe findest
 Wir wissen, dass der Einstieg manchmal holprig sein kann. Zögere niemals, uns um Hilfe zu bitten!
 
-➡️ **[Frage im `developer-need-help`-Channel stellen](https://github.com/DEIN-USERNAME/DEIN-REPO/issues/new?labels=developer-need-help)**
+➡️ **[Frage im `developer-need-help`-Channel stellen](https://github.com/BlugDeg/SCOverlay-Updates/issues/new?labels=developer-need-help)**
 Erstelle einfach ein neues Issue mit dem Label **`developer-need-help`**. Einer aus dem Team oder der Community wird sich so schnell wie möglich bei dir melden.
 
 ### Gestalte die Zukunft der API mit!
 Diese API ist ein lebendiges Werkzeug. Wenn du während der Entwicklung denkst: "Mensch, wenn der Host doch nur DIESE Funktion hätte...", dann bist du genau die Person, die wir suchen!
 
-➡️ **[Eine neue API-Funktion vorschlagen](https://github.com/DEIN-USERNAME/DEIN-REPO/issues/new?labels=api-suggestion)**
-Teile deine Gedanken mit uns, indem du ein Issue mit dem Label **`api-suggestion`** erstellst. Lass uns gemeinsam darüber diskutieren.
+➡️ **[Eine neue API-Funktion vorschlagen](https://github.com/BlugDeg/SCOverlay-Updates/issues/new?labels=api-suggestion)**
+Teile deine Gedanken mit uns, indem du ein Issue mit dem Label **`api-suggestion`** erstellst.
+
+### Ein lizenziertes Addon vorschlagen
+Du hast ein Premium-Addon entwickelt und möchtest eine offizielle `LicenseId` anfragen? Fantastisch!
+
+➡️ **[Eine neue Lizenz-ID anfragen](https://github.com/BlugDeg/SCOverlay-Updates/issues/new?labels=licensing-request)**
+Erstelle ein Issue mit dem Label **`licensing-request`** und stelle uns dein Projekt vor. Wir werden uns dann bei dir melden, um die nächsten Schritte zu besprechen.
 
 **Wir freuen uns darauf, zu sehen, was du erschaffst!**
