@@ -1,13 +1,11 @@
 <p align="center">
-  <!-- Readme Sektion -->
   <a href="README.de.md"><img src="https://img.shields.io/badge/Readme-555?style=flat-square" alt="Readme"></a><!--
   --><a href="README.md"><img src="https://img.shields.io/badge/EN-007bff?style=flat-square" alt="English"></a><!--
   --><a href="README.de.md"><img src="https://img.shields.io/badge/DE-555?style=flat-square" alt="Deutsch"></a>
   &nbsp;&nbsp;|&nbsp;&nbsp;
-  <!-- Developer Sektion -->
-  <a href="docs/SDK_MANUAL.md"><img src="https://img.shields.io/badge/Developer-555?style=flat-square" alt="Developer"></a><!--
-  --><a href="docs/SDK_MANUAL.md"><img src="https://img.shields.io/badge/EN-ff6f00?style=flat-square" alt="English"></a><!--
-  --><a href="docs/SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=flat-square" alt="Deutsch"></a>
+  <a href="SDK_MANUAL.md"><img src="https://img.shields.io/badge/Developer-555?style=flat-square" alt="Developer"></a><!--
+  --><a href="SDK_MANUAL.md"><img src="https://img.shields.io/badge/EN-ff6f00?style=flat-square" alt="English"></a><!--
+  --><a href="SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=flat-square" alt="Deutsch"></a>
 </p>
 
 
