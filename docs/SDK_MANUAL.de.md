@@ -1,8 +1,11 @@
 <p align="center">
-  <a href="README.md"><img src="https://img.shields.io/badge/USER-README-007bff?style=flat-square" alt="User Readme"></a><!--
-  --><a href="README.de.md"><img src="https://img.shields.io/badge/BENUTZER-LIESMICH-555?style=flat-square" alt="Benutzer Liesmich"></a><!--
-  --><a href="SDK_MANUAL.md"><img src="https://img.shields.io/badge/DEVELOPER-EN-ff6f00?style=flat-square" alt="Developer EN"></a><!--
-  --><a href="SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/ENTWICKLER-DE-555?style=flat-square" alt="Entwickler DE"></a>
+  <strong>Readme:</strong>&nbsp;
+  <a href="../README.md"><img src="https://img.shields.io/badge/EN-ff6f00?style=flat-square" alt="English Readme"></a><!--
+  --><a href="../README.de.md"><img src="https://img.shields.io/badge/DE-ff6f00?style=flat-square" alt="German Readme"></a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <strong>Developer:</strong>&nbsp;
+  <a href="SDK_MANUAL.md"><img src="https://img.shields.io/badge/EN-ff6f00?style=flat-square" alt="English Developer Manual"></a><!--
+  --><a href="SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/DE-007bff?style=flat-square" alt="German Developer Manual"></a>
 </p>
 
 # SCOverlay Addon SDK Handbuch
