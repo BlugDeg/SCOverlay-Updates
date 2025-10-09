@@ -1,4 +1,4 @@
-p align="center">
+<p align="center">
   <!-- Readme Links -->
   <a href="README.md"><img src="https://img.shields.io/badge/Readme-007bff?style=for-the-badge" alt="Readme EN"></a><!--
   --><a href="README.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Readme DE"></a>
