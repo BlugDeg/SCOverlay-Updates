@@ -1,16 +1,16 @@
 <p align="center">
   <!-- Readme Links -->
-  <a href="README.md"><img src="https://img.shields.io/badge/Readme-007bff?style=for-the-badge" alt="Readme"></a><!--
-  --><a href="README.md"><img src="https://img.shields.io/badge/EN-007bff?style=for-the-badge" alt="English"></a><!--
-  --><a href="README.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
+  <a href="README.de.md"><img src="https://img.shields.io/badge/Readme-007bff?style=for-the-badge" alt="Readme"></a><!--
+  --><a href="README.md"><img src="https://img.shields.io/badge/EN-ff6f00?style=for-the-badge" alt="English"></a><!--
+  --><a href="README.de.md"><img src="https://img.shields.io/badge/DE-007bff?style=for-the-badge" alt="Deutsch"></a>
   &nbsp;&nbsp;|&nbsp;&nbsp;
   <!-- Manual Links -->
-  <a href="MANUAL.md"><img src="https://img.shields.io/badge/Manual-555?style=for-the-badge" alt="Manual"></a><!--
+  <a href="MANUAL.de.md"><img src="https://img.shields.io/badge/Manual-555?style=for-the-badge" alt="Manual"></a><!--
   --><a href="MANUAL.md"><img src="https://img.shields.io/badge/EN-555?style=for-the-badge" alt="English"></a><!--
   --><a href="MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
   &nbsp;&nbsp;|&nbsp;&nbsp;
   <!-- Developer/SDK Links -->
-  <a href="SDK_MANUAL.md"><img src="https://img.shields.io/badge/Developer-555?style=for-the-badge" alt="Developer"></a><!--
+  <a href="SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/Developer-555?style=for-the-badge" alt="Developer"></a><!--
   --><a href="SDK_MANUAL.md"><img src="https://img.shields.io/badge/EN-555?style=for-the-badge" alt="English"></a><!--
   --><a href="SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
 </p>
