@@ -1,13 +1,10 @@
 <p align="center">
-  <!-- Link zur englischen Benutzeranleitung -->
-  <a href="README.md"><img src="https://img.shields.io/badge/User-Readme-gray?style=for-the-badge" alt="User Readme"></a>
-  <!-- Link zur deutschen Benutzeranleitung -->
-  <a href="README.de.md"><img src="https://img.shields.io/badge/Benutzer-Liesmich-blue?style=for-the-badge" alt="Benutzer Liesmich"></a>
-  <!-- Link zum englischen Entwicklerhandbuch -->
-  <a href="docs/SDK_MANUAL.md"><img src="https://img.shields.io/badge/Developer-EN-gray?style=for-the-badge" alt="Developer EN"></a>
-  <!-- Link zum deutschen Entwicklerhandbuch -->
-  <a href="docs/SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/Entwickler-DE-orange?style=for-the-badge" alt="Entwickler DE"></a>
+  <a href="README.md"><img src="https://img.shields.io/badge/USER-README-555?style=flat" alt="User Readme"></a>
+  <a href="README.de.md"><img src="https://img.shields.io/badge/BENUTZER-LIESMICH-blue?style=flat" alt="Benutzer Liesmich"></a>
+  <a href="docs/SDK_MANUAL.md"><img src="https://img.shields.io/badge/DEVELOPER-EN-555?style=flat" alt="Developer EN"></a>
+  <a href="docs/SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/ENTWICKLER-DE-orange?style=flat" alt="Entwickler DE"></a>
 </p>
+
 
 <!-- Header: Logo, Titel und Slogan -->
 <p align="center">
