@@ -1,11 +1,13 @@
 <p align="center">
-  <strong>Readme:</strong>&nbsp;
-  <a href="README.md"><img src="https://img.shields.io/badge/EN-ff6f00?style=flat-square" alt="English Readme"></a><!--
-  --><a href="README.de.md"><img src="https://img.shields.io/badge/DE-007bff?style=flat-square" alt="German Readme"></a>
+  <!-- Readme Sektion -->
+  <a href="README.md"><img src="https://img.shields.io/badge/Readme-555?style=flat-square" alt="Readme"></a><!--
+  --><a href="README.md"><img src="https://img.shields.io/badge/EN-555?style=flat-square" alt="English"></a><!--
+  --><a href="README.de.md"><img src="https://img.shields.io/badge/DE-007bff?style=flat-square" alt="Deutsch"></a>
   &nbsp;&nbsp;|&nbsp;&nbsp;
-  <strong>Developer:</strong>&nbsp;
-  <a href="docs/SDK_MANUAL.md"><img src="https://img.shields.io/badge/EN-ff6f00?style=flat-square" alt="English Developer Manual"></a><!--
-  --><a href="docs/SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/DE-ff6f00?style=flat-square" alt="German Developer Manual"></a>
+  <!-- Developer Sektion -->
+  <a href="docs/SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/Developer-555?style=flat-square" alt="Developer"></a><!--
+  --><a href="docs/SDK_MANUAL.md"><img src="https://img.shields.io/badge/EN-ff6f00?style=flat-square" alt="English"></a><!--
+  --><a href="docs/SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=flat-square" alt="Deutsch"></a>
 </p>
 
 
