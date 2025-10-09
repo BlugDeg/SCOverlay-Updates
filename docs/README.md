@@ -10,9 +10,9 @@
   --><a href="MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
   &nbsp;&nbsp;|&nbsp;&nbsp;
   <!-- Developer/SDK Links -->
-  <a href="docs/SDK_MANUAL.md"><img src="https://img.shields.io/badge/Developer-555?style=for-the-badge" alt="Developer"></a><!--
-  --><a href="docs/SDK_MANUAL.md"><img src="https://img.shields.io/badge/EN-555?style=for-the-badge" alt="English"></a><!--
-  --><a href="docs/SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
+  <a href="SDK_MANUAL.md"><img src="https://img.shields.io/badge/Developer-555?style=for-the-badge" alt="Developer"></a><!--
+  --><a href="SDK_MANUAL.md"><img src="https://img.shields.io/badge/EN-555?style=for-the-badge" alt="English"></a><!--
+  --><a href="SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
 </p>
 
 <!-- Header: Logo, Title, and Tagline -->
