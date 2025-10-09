@@ -1,8 +1,8 @@
 <p align="center">
-  <a href="README.md"><img src="https://img.shields.io/badge/USER-README-555?style=flat" alt="User Readme"></a>
-  <a href="README.de.md"><img src="https://img.shields.io/badge/BENUTZER-LIESMICH-blue?style=flat" alt="Benutzer Liesmich"></a>
-  <a href="docs/SDK_MANUAL.md"><img src="https://img.shields.io/badge/DEVELOPER-EN-555?style=flat" alt="Developer EN"></a>
-  <a href="docs/SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/ENTWICKLER-DE-orange?style=flat" alt="Entwickler DE"></a>
+  <a href="README.md"><img src="https://img.shields.io/badge/USER-README-007bff?style=flat-square" alt="User Readme"></a><!--
+  --><a href="README.de.md"><img src="https://img.shields.io/badge/BENUTZER-LIESMICH-555?style=flat-square" alt="Benutzer Liesmich"></a><!--
+  --><a href="SDK_MANUAL.md"><img src="https://img.shields.io/badge/DEVELOPER-EN-ff6f00?style=flat-square" alt="Developer EN"></a><!--
+  --><a href="SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/ENTWICKLER-DE-555?style=flat-square" alt="Entwickler DE"></a>
 </p>
 
 
