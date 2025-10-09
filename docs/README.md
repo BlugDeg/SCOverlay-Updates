@@ -1,13 +1,16 @@
-<p align="center">
-  <a href="README.de.md"><img src="https://img.shields.io/badge/Readme-555?style=flat-square" alt="Readme"></a><!--
-  --><a href="README.md"><img src="https://img.shields.io/badge/EN-007bff?style=flat-square" alt="English"></a><!--
-  --><a href="README.de.md"><img src="https://img.shields.io/badge/DE-555?style=flat-square" alt="Deutsch"></a>
+p align="center">
+  <!-- Readme Links -->
+  <a href="README.md"><img src="https://img.shields.io/badge/Readme-007bff?style=for-the-badge" alt="Readme EN"></a><!--
+  --><a href="README.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Readme DE"></a>
   &nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="SDK_MANUAL.md"><img src="https://img.shields.io/badge/Developer-555?style=flat-square" alt="Developer"></a><!--
-  --><a href="SDK_MANUAL.md"><img src="https://img.shields.io/badge/EN-ff6f00?style=flat-square" alt="English"></a><!--
-  --><a href="SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=flat-square" alt="Deutsch"></a>
+  <!-- Manual Links -->
+  <a href="docs/MANUAL.md"><img src="https://img.shields.io/badge/Manual-555?style=for-the-badge" alt="Manual EN"></a><!--
+  --><a href="docs/MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Manual DE"></a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <!-- Developer/SDK Links -->
+  <a href="docs/SDK_MANUAL.md"><img src="https://img.shields.io/badge/Developer-555?style=for-the-badge" alt="Developer EN"></a><!--
+  --><a href="docs/SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Developer DE"></a>
 </p>
-
 
 <!-- Header: Logo, Title, and Tagline -->
 <p align="center">
@@ -22,72 +25,58 @@
 <h1 align="center">SCOverlay</h1>
 
 <p align="center">
-  A modular, high-performance in-game overlay for Star Citizen, extensible through a powerful addon system.
+  <strong>Your Modular Cockpit Assistant for Star Citizen.</strong>
+  <br>
+  Enhance your gameplay with a high-performance, fully customizable overlay platform built for and by the community.
 </p>
 
 <!-- Badges -->
 <p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/DEIN-GITHUB-USERNAME/DEIN-REPO-NAME" alt="License"></a>
-  <a href="https://www.patreon.com/cw/BlugDeg"><img src="https://img.shields.io/badge/patreon-become a patron-orange" alt="Patreon"></a>
-  <a href="#"><img src="https://img.shields.io/badge/status-active-brightgreen" alt="Status"></a>
+  <a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/LICENSE"><img src="https://img.shields.io/github/license/BlugDeg/SCOverlay-Updates" alt="License"></a>
+  <a href="https://www.patreon.com/cw/BlugDeg"><img src="https://img.shields.io/badge/Patreon-Support%20Us-orange" alt="Patreon"></a>
+  <a href="https://github.com/BlugDeg/SCOverlay-Updates/issues"><img src="https://img.shields.io/badge/Issue%20Council-Active-brightgreen" alt="Status"></a>
 </p>
 
 ---
 
-## 🔑 Access & Licensing
+## What is SCOverlay?
 
-SCOverlay is a supporter-driven project. Access to the software, its updates, and your personal license key is granted through a **Patreon membership**. Your support directly contributes to the ongoing development and maintenance of this platform.
+**SCOverlay is not just another tool—it's an ecosystem.** It is a lightweight, powerful, and stable in-game overlay for Star Citizen, designed from the ground up to be extended. Whether you need a precise timer for hangar doors, a real-time intelligence monitor for player encounters, or a quick way to display your trade route maps, SCOverlay provides the platform to make it happen.
 
-**How to get SCOverlay:**
+Our philosophy is simple: **Performance First, Modularity Always.** We provide a rock-solid core so that you and the developer community can build the features you need without ever compromising your framerate.
 
-1.  **Become a Patron:** Visit our Patreon page and choose a membership tier.
+## Key Features
+
+-   🚀 **Extensible Addon Architecture:** The heart of SCOverlay. A clean and stable API allows developers to easily create and integrate new features.
+-   ⚡ **Performance-Driven Core:** A built-in "Performance Watchdog" continuously monitors system load to prevent frame drops, ensuring a smooth gaming experience.
+-   🎨 **Fully Customizable UI:** Move, resize, and style the overlay to perfectly match your cockpit setup.
+-   ⌨️ **Robust Hotkey System:** Built with low-level keyboard hooks to guarantee reliability, even in the most intense dogfights.
+-   🔄 **Integrated Auto-Updater:** The core application and all addons receive updates seamlessly, keeping your toolkit on the cutting edge.
+
+## 🔑 How To Get Access
+
+SCOverlay is a supporter-driven project. Your support through **Patreon** not only grants you access but also fuels the continuous development of the platform and its addons.
+
+1.  **Become a Patron:** Visit our official Patreon page and choose a membership tier that suits you.
     <br>➡️ **[https://www.patreon.com/cw/BlugDeg](https://www.patreon.com/cw/BlugDeg)**
 
-2.  **Check Your Email:** After joining, you will receive an email containing:
-    *   Your personal **license key** to activate the software.
-    *   A **download link** for the latest version of the SCOverlay installer and its addons.
+2.  **Receive Your Welcome Email:** After joining, you will get an email with everything you need:
+    *   Your personal **License Key** to activate the software.
+    *   A **Download Link** for the latest installer.
 
-## 🚀 Installation & Quick Start
+Once installed, simply launch SCOverlay, activate it with your key, and you're ready to go!
 
-1.  Run the `SCOverlay-Setup-vX.Y.Z.exe` you received via email.
-2.  Start SCOverlay and activate it with the license key from your email.
-3.  Press the default hotkey <kbd>Shift</kbd> + <kbd>F10</kbd> to open or close the overlay in-game.
-4.  To move or resize the window, go to `Settings -> General` and switch "Unlock Window" to "On".
+## Where to Go From Here?
 
-## ✨ Core Features
+To ensure you get the most out of SCOverlay, we've prepared detailed documentation.
 
-- 🚀 **Extensible Addon Architecture:** The heart of SCOverlay. A clean and stable API (`SCOverlay.API`) allows developers to easily create and integrate new features.
-- ⚡ **Performance First:** A built-in "Performance Watchdog" continuously monitors system load to prevent frame drops. Resource-intensive addon operations can request a temporary exemption.
-- 🎨 **Customizable UI:** The overlay window can be freely moved, resized, and styled with different themes.
-- ⌨️ **Robust Hotkey System:** Uses low-level keyboard hooks to function reliably even in demanding game scenarios, including a fail-safe "Scroll Lock Fallback" mechanism.
-- 🔄 **Integrated Updater:** The core application and all installed addons can receive updates directly to stay up-to-date.
+-   **New User?** Our **[User Manual](docs/MANUAL.md)** provides a step-by-step guide on installation, configuration, and using the included addons.
+-   **Developer?** The **[Developer SDK Manual](docs/SDK_MANUAL.md)** is your comprehensive guide to building your own addons on the SCOverlay platform.
 
-## 🧩 Included Addons
+For quick navigation, you can also use the buttons at the top of this page.
 
-SCOverlay comes with a set of powerful addons. Some are standard and included for all members, while others are premium addons that may require a specific license tied to your Patreon tier.
+## Get Involved!
 
-- **ExecTimer** (Standard): A precise, network-synchronized timer for the Executive Hangars, complete with customizable sound and visual alerts.
-- **QuickSheets** (Standard): Allows you to display your own images (checklists, trade routes, etc.) as floating, pinnable windows in-game.
-- **SpyCitizen** (🔑 Licensed): A powerful intelligence tool that parses the `Game.log` file in real-time to track players, record combat events, and maintain detailed statistics.
+Your feedback and ideas are the lifeblood of this project. Whether you've found a bug, have a suggestion for a new addon, or want to contribute yourself, our GitHub Issue Council is the best place to do it.
 
-## 💬 Support, Feedback, and Ideas
-
-Have a question, found a bug, or have a great idea for a new feature? The best way to reach us is through our GitHub Issue Council.
-
-➡️ **[Open an Issue on GitHub](https://github.com/DEIN-GITHUB-USERNAME/DEIN-REPO-NAME/issues)**
-
-Please use the appropriate tags (e.g., `bug`, `feature-request`, `question`) to help us organize feedback.
-
-## 👨‍💻 For Developers
-
-Interested in creating your own addon for SCOverlay? The API is designed to make it as easy as possible. Check out our comprehensive **[Developer SDK Manual](docs/SDK_MANUAL.md)** to get started.
-
-## 🤝 How to Contribute
-
-Contributions are always welcome! Please read our [**Contribution Guidelines (CONTRIBUTING.md)**](CONTRIBUTING.md). We also expect all contributors to abide by our [**Code of Conduct**](CODE_OF_CONDUCT.md).
-
-## 📄 License
-
-The source code of this project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-Please note that while the source code is open, using the compiled, ready-to-use application requires an active license obtained via Patreon.
+➡️ **[Join the Discussion on GitHub](https://github.com/BlugDeg/SCOverlay-Updates/issues)**
