@@ -79,6 +79,7 @@ Welcome, developer! SCOverlay is more than just a tool—it's an ecosystem. Our 
 ### Your First Code ("Hello World")
 
 This is all you need for a functional addon. Copy this code into your `Class1.cs` file.
+```csharp
 // Using statements tell your code which toolboxes to use.
 using SCOverlay.API;
 using System.Collections.Generic;
@@ -125,8 +126,7 @@ Code
     public void Shutdown() { }
 }
 }
-code
-Code
+```
 ### Deployment
 
 Copy your compiled `.dll` file into a subfolder of the same name within `%AppData%\SCOverlay\addons`.
