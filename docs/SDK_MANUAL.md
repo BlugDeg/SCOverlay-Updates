@@ -23,7 +23,7 @@
 <path d="M12 3C12 3 9 6 9 9C9 12 12 17 12 17" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 <h1>SCOverlay Addon SDK</h1>
-<p><strong>Developer Manual & API Guide v3.2</strong></p>
+<p><strong>Developer Manual & API Guide v4.0</strong></p>
 <br>
 </div>
 
@@ -43,9 +43,9 @@
     *   [Theming (Styling Your UI)](#theming-styling-your-ui)
     *   [Performance Management](#performance-management)
 *   [Advanced Tutorial: Taking Over the Core Hotkey](#chapter-5-advanced-tutorial-taking-over-the-core-hotkey)
-    *   [Step 1: Subscribe to the Event](#step-1-subscribe-to-the-event)
-    *   [Step 2: Take Control](#step-2-take-control)
-    *   [Step 3: Block Game Input & Show Your UI](#step-3-block-game-input--show-your-ui)
+    *   [Step 1: Create a Mode-Toggle Function](#step-1-create-a-mode-toggle-function)
+    *   [Step 2: Implement the Hijacked Hotkey Handler](#step-2-implement-the-hijacked-hotkey-handler)
+    *   [Step 3: Clean Up on Shutdown](#step-3-clean-up-on-shutdown)
 *   [Building Settings UIs: From Simple to Powerful](#chapter-6-building-settings-uis-from-simple-to-powerful)
     *   [Method 1: The Building Block System (Simple/Legacy)](#method-1-the-building-block-system-simplelegacy)
     *   [Method 2: Full UI Freedom (UserControl - Recommended)](#method-2-full-ui-freedom-usercontrol---recommended)
@@ -74,7 +74,7 @@ Welcome, developer! SCOverlay is more than just a tool—it's an ecosystem. Our 
 
 *   **Visual Studio 2022** (the free Community Edition is perfect) with the ".NET Desktop Development" workload.
 *   **.NET 8 SDK** or newer.
-*   The `SCOverlay.API.dll` (version 1.0.7 or higher) from the latest SCOverlay release.
+*   The `SCOverlay.API.dll` (version **1.0.8 or higher**) from the latest SCOverlay release.
 
 1.  Create a "Class Library" project in Visual Studio for C# (.NET 8).
 2.  Add API Reference: Right-click `Dependencies > Add Assembly Reference...` and select the `SCOverlay.API.dll`.
@@ -88,6 +88,7 @@ This is all you need for a functional addon. Copy this code into your `Class1.cs
 using SCOverlay.API;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace MyFirstAddon
 {
@@ -121,6 +122,7 @@ namespace MyFirstAddon
         }
 
         // --- For now, we leave the other required methods empty ---
+        public UserControl? GetSettingsControl(IAddonHost host) => null;
         public IEnumerable<AddonControl> GetSettingsControls() => [];
         public IDictionary<string, (string en, string de)> GetLocalizations() => new Dictionary<string, (string, string)>();
         public void Draw(Graphics g, Rectangle bounds) { }
@@ -162,7 +164,8 @@ The `IAddonHost` is your bridge to all of SCOverlay's features. Think of it as a
 
 ### Menu and UI Control
 
-*   `void TakeMenuControl(...)`: Takes exclusive control of the main menu to create your own sub-menus.
+*   `void ShowMenu(IAddon addon, Action? onBack)`: **(New)** Programmatically opens the main overlay panel (if closed) and immediately gives menu control to your addon. This is perfect for seamless transitions from a custom UI (like a toolbar) back to a menu inside the main panel.
+*   `void TakeMenuControl(...)`: Takes exclusive control of the main menu if it's already open to create your own sub-menus.
 *   `void ReleaseMenuControl()`: Returns control to the main menu.
 *   `void InvalidateOverlay()`: Forces an immediate redraw. Crucial for making your UI changes visible.
 *   `void HideMenu()`: Closes the entire overlay menu programmatically.
@@ -180,20 +183,21 @@ The `IAddonHost` is your bridge to all of SCOverlay's features. Think of it as a
 ### Hotkeys & Input (New & Powerful)
 
 <div class="note" style="background-color: #e7f3fe; border-left: 6px solid #2196F3;">
-<strong>Important API Change: Event-Based System</strong><br>
-Starting with version 1.0.7, the hotkey system has been upgraded to a flexible event model. This is the recommended approach for all new addons that need to react to hotkeys, especially if they intend to override the core's default behavior.
+<strong>Important API Update: Explicit Control System</strong><br>
+The hotkey system provides a robust, state-based mechanism to prevent conflicts and race conditions. This is the only supported way to take over the Core's main hotkey.
 </div>
 
-*   `event EventHandler<HotkeyEventArgs> OnGlobalHotkey;`
-    *   **Purpose:** This is the new heart of hotkey processing. You can subscribe to this event to listen for **any** hotkey registered in the system, including the core toggle hotkey (`Shift+F10`).
-    *   **Most Powerful Feature:** In the `HotkeyEventArgs` object, you can set `e.Handled = true;`. This signals to the core that you have completely handled the hotkey press. The core will then **not** perform its default action (like opening the main menu).
-    *   **Use Case:** Perfect for "stealing" the core hotkey to open your own specialized UI, like a photomode panel, instead.
+*   `void SuppressCoreHotkeys(bool suppress);`
+    *   **Purpose:** This is your "main switch" for taking exclusive control.
+    *   `SuppressCoreHotkeys(true)`: Tells the Core to completely ignore its own main toggle hotkey. The default panel will **not** open.
+    *   `SuppressCoreHotkeys(false)`: Returns full control of the main hotkey back to the Core.
+    *   **Use Case:** Perfect for "stealing" the core hotkey to open your own specialized UI, like a photomode panel, without any flickering or conflicts.
 *   `void BlockGameInput(bool block);`
-    *   **Purpose:** This is your most important function for managing interactive UI windows.
-    *   `BlockGameInput(true)`: Instantly freezes the game. All keyboard and mouse input is intercepted by the core and no longer passed to the game. In the background, the core performs an intelligent trick (the "Invisible Butler") to give your addon window immediate system focus and position the mouse cursor perfectly.
-    *   `BlockGameInput(false)`: Instantly unfreezes the game. The core ensures that the game regains focus and the mouse cursor is reset correctly, allowing the user to resume playing seamlessly.
+    *   **Purpose:** Your most important function for managing interactive UI windows.
+    *   `BlockGameInput(true)`: Instantly freezes the game. All keyboard and mouse input is intercepted. The Core performs the "Invisible Butler" trick in the background: it gives your addon window immediate system focus by simulating a targeted, invisible mouse click and then positions the cursor perfectly for you.
+    *   `BlockGameInput(false)`: Instantly unfreezes the game and seamlessly returns focus, allowing the user to resume playing.
+*   `RegisterHotkey`, `UnregisterHotkey`, `RebindHotkey`: These methods are essential. You use them to register your own temporary handler for the core hotkey after you have suppressed it. They also remain fully functional for any other unique hotkeys your addon might need.
 *   `bool ShowHotkeyDialog(...)`: Opens a dialog to capture a new key combination from the user. Useful for your settings UI.
-*   <span style="text-decoration: line-through;">`RegisterHotkey`, `UnregisterHotkey`, `RebindHotkey`</span>: **(Legacy)** These methods still work for backward compatibility for simple, specific hotkeys. For new addons, using the `OnGlobalHotkey` event is strongly recommended.
 
 ### Persistence (Saving Data)
 
@@ -215,87 +219,103 @@ Starting with version 1.0.7, the hotkey system has been upgraded to a flexible e
 
 ## Chapter 5: Advanced Tutorial: Taking Over the Core Hotkey
 
-This tutorial shows you how to combine the new event system and `BlockGameInput` to open your own interactive UI instead of the default panel.
+This tutorial shows you how to use `SuppressCoreHotkeys` to open your own interactive UI instead of the default panel, completely avoiding race conditions.
 
-### Step 1: Subscribe to the Event
+Let's imagine your addon has its own hotkey (e.g., `Shift+F9`) to enter a "Photomode". Once in this mode, you want the main SCOverlay hotkey (`Shift+F10`) to open your special editor panel.
 
-In your addon's `Initialize` method, register a handler for the new `OnGlobalHotkey` event.
+### Step 1: Create a Mode-Toggle Function
 
+This function will be triggered by your addon's unique hotkey (`Shift+F9` in this example). It acts as the main switch for your special mode.
 ```csharp
 // In your main addon class
 private IAddonHost _host;
+private bool _isPhotomodeActive = false;
+private const string PHOTOMODE_HOTKEY_ID = "betterpicture_toggle";
 
 public void Initialize(IAddonHost host)
 {
     _host = host;
-    _host.OnGlobalHotkey += OnGlobalHotkeyPress; // Subscribe to the event
+    // Register a UNIQUE hotkey to enter/exit your addon's special mode.
+    _host.RegisterHotkey(TogglePhotomode, PHOTOMODE_HOTKEY_ID, "Shift+F9"); 
 }
 
-// IMPORTANT: Unsubscribe from the event in your Shutdown method!
-public void Shutdown()
+private void TogglePhotomode()
 {
-    _host.OnGlobalHotkey -= OnGlobalHotkeyPress;
-}
-```
+    _isPhotomodeActive = !_isPhotomodeActive;
 
-### Step 2: Take Control
-
-In your handler method, check if the hotkey is the one you want to intercept and set `e.Handled = true`.
-
-```csharp
-private void OnGlobalHotkeyPress(object? sender, HotkeyEventArgs e)
-{
-    // Check if the core toggle hotkey was pressed.
-    // .ToLowerInvariant() is important to ignore case sensitivity.
-    if (e.Hotkey == _host.CoreToggleHotkey.ToLowerInvariant()) 
+    if (_isPhotomodeActive)
     {
-        // Claim the event, preventing the default panel from opening.
-        e.Handled = true;
-
-        // Execute our own logic.
-        ToggleMyInteractivePanel(); 
+        // --- ENTERING PHOTOMODE ---
+        _host.LogInfo("Entering Photomode: Suppressing core hotkey and registering override.");
+        _host.SuppressCoreHotkeys(true);
+        _host.RegisterHotkey(ToggleInteractivePanel, "betterpicture_core_override", _host.CoreToggleHotkey);
+        // You could show a small indicator bar here, for example.
+    }
+    else
+    {
+        // --- EXITING PHOTOMODE ---
+        _host.LogInfo("Exiting Photomode: Returning control to core.");
+        
+        // Ensure your panel is closed and input is unblocked
+        if (_myPanel != null && !_myPanel.IsDisposed)
+        {
+            _myPanel.Close();
+        }
+        
+        _host.UnregisterHotkey("betterpicture_core_override");
+        _host.SuppressCoreHotkeys(false);
+        // Hide your indicator bar here.
     }
 }
 ```
+### Step 2: Implement the Hijacked Hotkey Handler
 
-### Step 3: Block Game Input & Show Your UI
-
-Your `Toggle` method will use `BlockGameInput` to create a seamless experience.
-
+This method is now temporarily registered to handle `Shift+F10`. It's responsible for showing and hiding your custom interactive UI.
 ```csharp
 private MyCustomForm? _myPanel; // A reference to your window
 
-private void ToggleMyInteractivePanel()
+private void ToggleInteractivePanel()
 {
     bool isPanelVisible = _myPanel != null && !_myPanel.IsDisposed;
 
     if (isPanelVisible)
     {
         // If the panel is visible, simply close it.
+        // The FormClosed event will automatically call BlockGameInput(false).
         _myPanel.Close(); 
     }
     else
     {
-        // To open the panel:
-
-        // 1. Tell the core to freeze the game and prepare focus for us.
+        // 1. Tell the core to freeze the game and handle the focus magic.
         _host.BlockGameInput(true);
         
-        // 2. Create your custom window.
+        // 2. Create and show your custom window.
         _myPanel = new MyCustomForm(); // Your window that inherits from Form
-
-        // 3. IMPORTANT: Ensure input is released when your window is closed.
         _myPanel.FormClosed += (s, a) => 
         {
             _host.BlockGameInput(false);
-            _myPanel = null; // Clean up the reference
+            _myPanel = null; 
         };
-        
-        // 4. Show the window. The core handles the focus trick in the background.
         _myPanel.Show();
     }
 }
 ```
+### Step 3: Clean Up on Shutdown
+
+Always ensure you return control to the core if your addon is unloaded while your special mode is active.
+```csharp
+public void Shutdown()
+{
+    // If the addon is shut down while photomode is active, give control back!
+    if (_isPhotomodeActive)
+    {
+        _host.UnregisterHotkey("betterpicture_core_override");
+        _host.SuppressCoreHotkeys(false);
+    }
+}
+```
+
+This workflow is 100% stable, predictable, and gives you complete, exclusive control when you need it, while ensuring the core always gets control back.
 
 ## Chapter 6: Building Settings UIs: From Simple to Powerful
 
@@ -422,7 +442,7 @@ public class MyPremiumAddon : IAddon { /* ... */ }
 
 ### Dos & Don'ts
 
-*   ✅ **Unsubscribe from Events:** In your `Shutdown()` method, always unsubscribe from events like `host.OnGlobalHotkey -= MyHandler;` to prevent memory leaks.
+*   ✅ **Clean Up Properly:** In your `Shutdown()` method, always clean up resources. If you used `SuppressCoreHotkeys(true)`, make sure you call `SuppressCoreHotkeys(false)` to return control.
 *   ❌ **Never Block `Draw()`:** Do not perform file I/O, network requests, or long loops in the `Draw` method. It will cause stuttering.
 *   ❌ **Don't Assume a UI Thread:** When updating UI from a background task, use `myControl.BeginInvoke(...)` to prevent crashes.
 
@@ -462,4 +482,4 @@ If you have an idea for a new tool in the `IAddonHost` toolbox, let us know!
 ➡️ **Request a new License ID**
 Create an issue to introduce your premium addon project.
 
-We're excited to see what you create
+We're excited to see what you create!
