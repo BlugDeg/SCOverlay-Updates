@@ -23,7 +23,7 @@
 <path d="M12 3C12 3 9 6 9 9C9 12 12 17 12 17" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 <h1>SCOverlay Addon SDK</h1>
-<p><strong>Entwicklerhandbuch & API-Leitfaden v3.2</strong></p>
+<p><strong>Entwicklerhandbuch & API-Leitfaden (API v1.1 / Core v0.0.1.7+)</strong></p>
 <br>
 </div>
 
@@ -36,16 +36,17 @@
 *   [Das IAddon-Interface: Die DNA deines Addons](#kapitel-3-das-iaddon-interface-die-dna-deines-addons)
 *   [Der IAddonHost: Deine Werkzeugkiste für den Core](#kapitel-4-der-iaddonhost-deine-werkzeugkiste-für-den-core)
     *   [Menü- und UI-Steuerung](#menü--und-ui-steuerung)
-    *   [Core-Dienste](#core-dienste)
+    *   [Core-Dienste & Fenster](#core-dienste--fenster)
     *   [Hotkeys & Eingabe (Neu & Leistungsstark)](#hotkeys--eingabe-neu--leistungsstark)
     *   [Persistenz (Daten speichern)](#persistenz-daten-speichern)
     *   [Logging & Lokalisierung](#logging--lokalisierung)
     *   [Theming (Styling deiner UI)](#theming-styling-deiner-ui)
     *   [Performance-Management](#performance-management)
 *   [Fortgeschrittenes Tutorial: Den Core-Hotkey übernehmen](#kapitel-5-fortgeschrittenes-tutorial-den-core-hotkey-übernehmen)
-    *   [Schritt 1: Das Event abonnieren](#schritt-1-das-event-abonnieren)
-    *   [Schritt 2: Die Kontrolle übernehmen](#schritt-2-die-kontrolle-übernehmen)
-    *   [Schritt 3: Spiel-Input blockieren & UI anzeigen](#schritt-3-spiel-input-blockieren--ui-anzeigen)
+    *   [Schritt 1: Die Logik vorbereiten](#schritt-1-die-logik-vorbereiten)
+    *   [Schritt 2: Die Kontrolle anfordern](#schritt-2-die-kontrolle-anfordern)
+    *   [Schritt 3: Auf den Hotkey reagieren](#schritt-3-auf-den-hotkey-reagieren)
+    *   [Schritt 4: Die Kontrolle zurückgeben](#schritt-4-die-kontrolle-zurückgeben)
 *   [Einstellungs-UIs erstellen: Von einfach bis leistungsstark](#kapitel-6-einstellungs-uis-erstellen-von-einfach-bis-leistungsstark)
     *   [Methode 1: Das Baukasten-System (Einfach/Legacy)](#methode-1-das-baukasten-system-einfachlegacy)
     *   [Methode 2: Völlige UI-Freiheit (UserControl - Empfohlen)](#methode-2-völlige-ui-freiheit-usercontrol---empfohlen)
@@ -54,9 +55,6 @@
     *   [Dos & Don'ts](#dos--donts)
 *   [Fehlerbehebung: Häufige Probleme lösen](#kapitel-8-fehlerbehebung-häufige-probleme-lösen)
 *   [Werde Teil der Entwicklung!](#kapitel-9-werde-teil-der-entwicklung)
-    *   [Wo du Hilfe findest](#wo-du-hilfe-findest)
-    *   [Gestalte die Zukunft der API!](#gestalte-die-zukunft-der-api)
-    *   [Schlage ein lizenziertes Addon vor](#schlage-ein-lizenziertes-addon-vor)
 
 ---
 
@@ -74,7 +72,7 @@ Willkommen, Entwickler! SCOverlay ist mehr als nur ein Werkzeug – es ist ein �
 
 *   **Visual Studio 2022** (die kostenlose Community Edition ist perfekt) mit dem ".NET-Desktopentwicklung"-Workflow.
 *   **.NET 8 SDK** oder neuer.
-*   Die `SCOverlay.API.dll` (Version 1.0.7 oder höher) aus dem neuesten SCOverlay-Release.
+*   Die `SCOverlay.API.dll` aus dem neuesten SCOverlay-Release.
 
 1.  Erstelle ein "Klassenbibliothek"-Projekt in Visual Studio für C# (.NET 8).
 2.  API-Referenz hinzufügen: Rechtsklick auf `Abhängigkeiten > Assemblyverweis hinzufügen...` und wähle die `SCOverlay.API.dll`.
@@ -88,6 +86,7 @@ Das ist alles, was du für ein funktionsfähiges Addon brauchst. Kopiere diesen 
 using SCOverlay.API;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms; // Notwendig für UserControl
 
 namespace MeinErstesAddon
 {
@@ -121,11 +120,12 @@ namespace MeinErstesAddon
         }
 
         // --- Vorerst lassen wir die anderen erforderlichen Methoden leer ---
-        public IEnumerable<AddonControl> GetSettingsControls() => [];
         public IDictionary<string, (string en, string de)> GetLocalizations() => new Dictionary<string, (string, string)>();
         public void Draw(Graphics g, Rectangle bounds) { }
         public void OnOverlayVisibilityChanged(bool isVisible) { }
         public void Shutdown() { }
+        public IEnumerable<AddonControl> GetSettingsControls() => []; // Legacy-Methode, kann leer bleiben
+        public UserControl? GetSettingsControl(IAddonHost host) => null; // Empfohlene Methode, kann null zurückgeben
     }
 }
 ```
@@ -149,51 +149,53 @@ Dies ist die Blaupause für jedes Addon. Deine Hauptklasse muss alle diese Membe
 | `Name`, `Author`, `Version`   | `string`                          | **Metadaten:** Identifiziert dein Addon.                                                                                           |
 | `Initialize(IAddonHost host)` | `void`                            | **Konstruktor:** Wird einmal beim Laden aufgerufen. Speichere hier die Host-Instanz. Dies ist deine Setup-Phase.                 |
 | `GetMainMenuButtons()`        | `IEnumerable<AddonButton>`        | **Hauptmenü-Buttons:** Definiert die Buttons, die dein Addon im Hauptmenü anzeigt.                                              |
-| `GetSettingsControl(IAddonHost host)` | `UserControl?`                    | **(Neu & Empfohlen)** Stellt ein komplettes, benutzerdefiniertes UI-Panel für deine Einstellungen bereit. Gibt dir totale kreative Freiheit. Siehe Kapitel 6. |
-| `GetSettingsControls()`       | `IEnumerable<AddonControl>`       | **(Einfach/Legacy)** Eine begrenzte Möglichkeit, grundlegende Steuerelemente zur Einstellungsseite hinzuzufügen. Ein guter Fallback für sehr einfache Bedürfnisse.         |
+| `OnExclusiveHotkey()`         | `void`                            | **(NEU)** Der Callback, den der Core aufruft, wenn du die exklusive Hotkey-Kontrolle hast und der Hotkey gedrückt wird. Hat eine leere Standardimplementierung, ist also optional. |
+| `GetSettingsControl(...)` | `UserControl?`                    | **(Empfohlen)** Stellt ein komplettes, benutzerdefiniertes UI-Panel für deine Einstellungen bereit. Gibt dir totale kreative Freiheit. Siehe Kapitel 6. |
+| `GetSettingsControls()`       | `IEnumerable<AddonControl>`       | **(Legacy)** Eine begrenzte Möglichkeit, grundlegende Steuerelemente zur Einstellungsseite hinzuzufügen. Nur für sehr einfache Addons ohne UI-Ansprüche. |
 | `Draw(Graphics g, ...)`       | `void`                            | **Zeichen-Engine:** Wird bei jedem Neuzeichnen des Overlays aufgerufen. Halte diesen Code extrem schnell!                     |
 | `OnOverlayVisibilityChanged(...)` | `void`                            | **Zustandssynchronisierung:** Reagiert auf das Öffnen/Schließen des Overlays. Nützlich zum Starten/Stoppen von Hintergrundaufgaben. |
-| `Shutdown()`                  | `void`                            | **Aufräumen:** Wird vor dem Entladen aufgerufen. Gib hier alle Ressourcen frei (z. B. Events deabonnieren), um Speicherlecks zu vermeiden. |
+| `Shutdown()`                  | `void`                            | **Aufräumen:** Wird vor dem Entladen aufgerufen. Gib hier alle Ressourcen frei (z.B. Fenster schließen), um Fehler zu vermeiden. |
 | `GetLocalizations()`          | `IDictionary<...>`                | **Lokalisierung:** Stelle englische und deutsche Übersetzungen für die UI-Texte deines Addons bereit.                         |
 
 ## Kapitel 4: Der IAddonHost: Deine Werkzeugkiste für den Core
 
-Der `IAddonHost` ist deine Brücke zu allen Funktionen von SCOverlay. Stell ihn dir als eine Werkzeugkiste voller leistungsstarker Werkzeuge vor, die du verwenden kannst.
+Der `IAddonHost` ist deine Brücke zu allen Funktionen von SCOverlay.
 
 ### Menü- und UI-Steuerung
 
 *   `void TakeMenuControl(...)`: Übernimmt die exklusive Kontrolle über das Hauptmenü, um deine eigenen Untermenüs zu erstellen.
 *   `void ReleaseMenuControl()`: Gibt die Kontrolle an das Hauptmenü zurück.
 *   `void InvalidateOverlay()`: Erzwingt ein sofortiges Neuzeichnen. Entscheidend, um deine UI-Änderungen sichtbar zu machen.
-*   `void HideMenu()`: Schließt das gesamte Overlay-Menü programmatisch.
+*   `void HideMenu()`: **(NEU)** Schließt das gesamte Overlay-Menü programmatisch auf eine sichere Weise.
 
-### Core-Dienste
+### Core-Dienste & Fenster
 
 *   `ISoundService Sound { get; }`
     *   `PlayFile(...)`: Spielt eine Sounddatei asynchron ab, ohne das Overlay einzufrieren.
 *   `IWindowService Window { get; }`
     *   `ShowNotification(...)`: Zeigt eine kurze, nicht blockierende "Toast"-Benachrichtigung an.
-    *   `CreateThemedWindow(...)`: Erstellt ein neues, leeres Fenster, das automatisch das aktuelle Overlay-Theme verwendet.
-    *   `Show/HideFilterOverlay(...)`: Zeigt einen bildschirmweiten Farbfilter an oder verbirgt ihn, z. B. für einen "Nachtmodus".
-    *   `Task<Image> TakeScreenshotAsync()`: Erstellt asynchron einen Screenshot des Spielbildschirms.
+    *   `CreateThemedWindow(...)`: Erstellt ein neues, leeres, selbstgezeichnetes Fenster (wie das Haupt-Overlay). **Nicht für Standard-Controls wie Buttons geeignet.**
+    *   `CreateStandardWindow(...)`: **(NEU)** Erstellt ein neues Fenster, das das Theme übernimmt und **perfekt für Standard-Controls** wie Buttons, Labels, etc. geeignet ist. Dies ist die richtige Wahl für interaktive Dialoge.
+    *   `Show/HideFilterOverlay(...)`: Zeigt einen bildschirmweiten Farbfilter an oder verbirgt ihn.
+*   `Task<Image> TakeScreenshotAsync()`: Erstellt asynchron einen Screenshot des Spielbildschirms.
 
 ### Hotkeys & Eingabe (Neu & Leistungsstark)
 
 <div class="note" style="background-color: #e7f3fe; border-left: 6px solid #2196F3;">
-<strong>Wichtige API-Änderung: Event-basiertes System</strong><br>
-Ab Version 1.0.7 wurde das Hotkey-System auf ein flexibles Event-Modell umgestellt. Dies ist der empfohlene Weg für alle neuen Addons, die auf Hotkeys reagieren müssen, insbesondere wenn sie das Standardverhalten des Cores überschreiben wollen.
+<strong>Wichtige API-Änderung: Das exklusive Kontroll-System</strong><br>
+Die alte, fehleranfällige `SuppressCoreHotkeys`-Methode wurde entfernt. Das neue System gibt dir die volle, aber sichere Kontrolle über den Haupt-Hotkey.
 </div>
 
-*   `event EventHandler<HotkeyEventArgs> OnGlobalHotkey;`
-    *   **Zweck:** Das ist das neue Herzstück der Hotkey-Verarbeitung. Du kannst dieses Event abonnieren, um auf **jeden** im System registrierten Hotkey zu lauschen, einschliesslich des Core-Hotkeys (`Shift+F10`).
-    *   **Mächtigstes Feature:** Im `HotkeyEventArgs`-Objekt kannst du `e.Handled = true;` setzen. Damit signalisierst du dem Core, dass du den Hotkey-Druck vollständig behandelt hast. Der Core wird daraufhin seine Standardaktion (z. B. das Öffnen des Hauptmenüs) **nicht** ausführen.
-    *   **Anwendungsfall:** Perfekt, um den Core-Hotkey zu "stehlen" und stattdessen eine eigene, spezialisierte UI wie ein Photomode-Panel zu öffnen.
-*   `void BlockGameInput(bool block);`
-    *   **Zweck:** Dies ist deine wichtigste Funktion zur Steuerung von interaktiven UI-Fenstern.
-    *   `BlockGameInput(true)`: Friert das Spiel sofort ein. Alle Tastatur- und Mauseingaben werden vom Core abgefangen und nicht mehr an das Spiel weitergeleitet. Der Core führt im Hintergrund einen intelligenten Trick aus ("Unsichtbarer Butler"), um deinem Addon-Fenster sofort den Systemfokus zu geben und den Mauszeiger perfekt zu positionieren.
-    *   `BlockGameInput(false)`: Gibt das Spiel sofort wieder frei. Der Core stellt sicher, dass das Spiel wieder den Fokus erhält und der Mauszeiger korrekt zurückgesetzt wird, damit der Benutzer nahtlos weiterspielen kann.
-*   `bool ShowHotkeyDialog(...)`: Öffnet einen Dialog, um vom Benutzer eine neue Tastenkombination aufzunehmen. Nützlich für deine Einstellungs-UI.
-*   <span style="text-decoration: line-through;">`RegisterHotkey`, `UnregisterHotkey`, `RebindHotkey`</span>: **(Veraltet)** Diese Methoden funktionieren aus Gründen der Abwärtskompatibilität weiterhin für sehr einfache, spezifische Hotkeys. Für neue Addons wird dringend empfohlen, das `OnGlobalHotkey`-Event zu verwenden.
+*   `bool RequestExclusiveHotkeyControl(IAddon addon)`:
+    *   **Zweck:** Dies ist der neue Weg, um den Haupt-Hotkey des Overlays für dein Addon zu "kapern".
+    *   **Funktion:** Du forderst die exklusive Kontrolle an. Wenn kein anderes Addon sie bereits hat, gibt die Methode `true` zurück. Ab diesem Moment werden alle Drücke des Haupt-Hotkeys an deine `OnExclusiveHotkey()`-Methode weitergeleitet.
+*   `void ReleaseExclusiveHotkeyControl(IAddon addon)`:
+    *   **Zweck:** Gibt die Kontrolle wieder an den Core zurück.
+    *   **Funktion:** Wenn du fertig bist (z.B. dein Fenster geschlossen wird), musst du diese Methode aufrufen, damit das Haupt-Overlay wieder normal auf den Hotkey reagieren kann.
+*   `void BlockGameInput(bool block)`:
+    *   **Zweck:** Unverändert wichtig für interaktive UI. Blockiert oder gibt die Eingaben an das Spiel frei.
+*   `RegisterHotkey`, `UnregisterHotkey`, `RebindHotkey`:
+    *   **Zweck:** Für das Hinzufügen von **zusätzlichen, eigenen Hotkeys** für dein Addon, die unabhängig vom Core-Hotkey sind.
 
 ### Persistenz (Daten speichern)
 
@@ -215,87 +217,90 @@ Ab Version 1.0.7 wurde das Hotkey-System auf ein flexibles Event-Modell umgestel
 
 ## Kapitel 5: Fortgeschrittenes Tutorial: Den Core-Hotkey übernehmen
 
-Dieses Tutorial zeigt dir, wie du das neue Event-System und `BlockGameInput` kombinierst, um eine eigene, interaktive UI anstelle des Standard-Panels zu öffnen.
+Dieses Tutorial zeigt dir, wie du mit dem neuen System eine eigene UI anstelle des Hauptmenüs öffnest.
 
-### Schritt 1: Das Event abonnieren
+### Schritt 1: Die Logik vorbereiten
 
-Registriere in der `Initialize`-Methode deines Addons einen Handler für das neue `OnGlobalHotkey`-Event.
-
+Definiere in deiner Addon-Klasse die Logik zum Starten und Stoppen deines exklusiven Modus.
 ```csharp
-// In deiner Addon-Hauptklasse
-private IAddonHost _host;
+private IAddonHost? _host;
+private Form? _meinExklusivesFenster;
+private bool _hatKontrolle = false;
 
-public void Initialize(IAddonHost host)
+// Methode zum Starten des Modus (z.B. von einem Button-Klick)
+private void StartExklusivModus()
 {
-    _host = host;
-    _host.OnGlobalHotkey += OnGlobalHotkeyPress; // Event abonnieren
-}
+    if (_host == null || _hatKontrolle) return;
 
-// WICHTIG: In der Shutdown-Methode das Event wieder deabonnieren!
-public void Shutdown()
-{
-    _host.OnGlobalHotkey -= OnGlobalHotkeyPress;
-}
-```
-
-### Schritt 2: Die Kontrolle übernehmen
-
-In deiner Handler-Methode prüfst du, ob der Hotkey für dich relevant ist und setzt `e.Handled = true`.
-
-```csharp
-private void OnGlobalHotkeyPress(object? sender, HotkeyEventArgs e)
-{
-    // Wir prüfen, ob der Core-Hotkey gedrückt wurde.
-    // .ToLowerInvariant() ist wichtig, um Gross-/Kleinschreibung zu ignorieren.
-    if (e.Hotkey == _host.CoreToggleHotkey.ToLowerInvariant()) 
+    // 1. Kontrolle anfordern
+    if (_host.RequestExclusiveHotkeyControl(this))
     {
-        // Wir beanspruchen das Event und verhindern, dass das Standard-Panel geöffnet wird.
-        e.Handled = true;
+        _hatKontrolle = true;
+        _host.Window.ShowNotification("Kontrolle übernommen!");
+        
+        // 2. Core-Menü sicher verstecken
+        _host.HideMenu();
 
-        // Wir führen unsere eigene Logik aus.
-        ToggleMeinInteraktivesPanel(); 
+        // 3. Eigenes Fenster anzeigen
+        OeffneMeinFenster();
     }
 }
-```
 
-### Schritt 3: Spiel-Input blockieren & UI anzeigen
-
-Deine `Toggle`-Methode verwendet `BlockGameInput`, um ein nahtloses Erlebnis zu schaffen.
-
-```csharp
-private MyCustomForm? _meinPanel; // Eine Referenz auf dein Fenster
-
-private void ToggleMeinInteraktivesPanel()
+// Methode zum Stoppen des Modus
+private void StoppExklusivModus()
 {
-    bool isPanelVisible = _meinPanel != null && !_meinPanel.IsDisposed;
+    if (_host == null || !_hatKontrolle) return;
+    
+    // 1. Fenster schließen
+    _meinExklusivesFenster?.Close();
+    _meinExklusivesFenster = null;
 
-    if (isPanelVisible)
+    // 2. Kontrolle zurückgeben
+    _host.ReleaseExclusiveHotkeyControl(this);
+    _hatKontrolle = false;
+    _host.Window.ShowNotification("Kontrolle zurückgegeben!");
+}
+
+private void OeffneMeinFenster()
+{
+    // Verwende CreateStandardWindow für interaktive UI!
+    _meinExklusivesFenster = _host.Window.CreateStandardWindow("Mein Panel");
+    _meinExklusivesFenster.FormClosed += (s, e) => StoppExklusivModus(); // Failsafe!
+    // ... füge hier deine Buttons etc. hinzu ...
+    _meinExklusivesFenster.Show();
+}
+```
+### Schritt 2: Auf den Hotkey reagieren
+
+Implementiere die `OnExclusiveHotkey`-Methode. Sie wird nun vom Core aufgerufen.
+```csharp
+public void OnExclusiveHotkey()
+{
+    // Wenn das Fenster da ist, zeige/verstecke es. Wenn nicht, erstelle es.
+    if (_meinExklusivesFenster != null && !_meinExklusivesFenster.IsDisposed)
     {
-        // Wenn das Panel sichtbar ist, schließen wir es einfach.
-        _meinPanel.Close(); 
+        _meinExklusivesFenster.Visible = !_meinExklusivesFenster.Visible;
     }
     else
     {
-        // Panel öffnen:
-
-        // 1. Dem Core sagen, er soll das Spiel einfrieren und den Fokus für uns übernehmen.
-        _host.BlockGameInput(true);
-        
-        // 2. Dein eigenes Fenster erstellen.
-        _meinPanel = new MyCustomForm(); // Dein Fenster, das von Form erbt
-
-        // 3. WICHTIG: Im 'FormClosed'-Event den Input wieder freigeben.
-        _meinPanel.FormClosed += (s, a) => 
-        {
-            _host.BlockGameInput(false);
-            _meinPanel = null;
-        };
-        
-        // 4. Fenster anzeigen. Der Core kümmert sich im Hintergrund um den Fokus-Trick.
-        _meinPanel.Show();
+        OeffneMeinFenster();
     }
 }
 ```
+### Schritt 3: Die Kontrolle zurückgeben
+Siehe `StoppExklusivModus()` oben. Der Aufruf von `_host.ReleaseExclusiveHotkeyControl(this)` ist der entscheidende Teil. Stelle sicher, dass dies passiert, wenn deine Funktion beendet wird (z.B. wenn der Benutzer dein Fenster schließt).
+
+### Schritt 4 (Optional): Aufräumen
+
+Stelle sicher, dass du in deiner `Shutdown()`-Methode den Modus beendest, um Fehler zu vermeiden.
+###```csharp
+public void Shutdown()
+{
+    // Stellt sicher, dass die Kontrolle beim Entladen immer zurückgegeben wird.
+    StoppExklusivModus();
+}
+```
+Dieses System ist robust, sicher und gibt dir die volle Kontrolle, wann und wie dein Addon auf den Haupt-Hotkey reagiert.
 
 ## Kapitel 6: Einstellungs-UIs erstellen: Von einfach bis leistungsstark
 
@@ -309,23 +314,12 @@ Mit `GetSettingsControls()` gibst du dem Core eine Liste einfacher Bausteine (`A
 *   **Nachteile:** Extrem eingeschränkt. Keine Schieberegler, Textfelder oder benutzerdefinierten Layouts.
 
 ```csharp
-// Dies gehört in deine IAddon-Klasse
 public IEnumerable<AddonControl> GetSettingsControls()
 {
-    // Ein einfacher Button
-    yield return new AddonControl(
-        id: "meinaddon_reset_button", 
-        label: "Statistik zurücksetzen", 
-        type: "RebindButton", // Dieser Typ ist für einfache Buttons
-        getValue: () => "", 
-        onClick: () => { /* Reset-Logik hier */ }
-    );
-    
-    // Ein spezielles Steuerelement zum Binden eines Hotkeys
     yield return new HotkeyControl(
         identifier: "meinaddon_hotkey_ctrl", 
         label: "Spezial-Aktion Hotkey", 
-        hotkeyIdentifier: "MeinAddon_Aktion1", // Der Schlüssel zum Speichern der Einstellung
+        hotkeyIdentifier: "MeinAddon_Aktion1",
         defaultHotkey: "Shift+F1"
     );
 }
@@ -342,7 +336,7 @@ So wird's gemacht:
 #### 1. Erstelle dein UserControl
 
 Klicke in Visual Studio mit der rechten Maustaste auf dein Projekt > Hinzufügen > **Benutzersteuerelement (Windows Forms)**. Nenne es `MeineEinstellungenPanel.cs`.
-Verwende den visuellen Designer, um Steuerelemente wie `Label`, `TextBox`, `TrackBar` (Schieberegler) usw. auf dein Panel zu ziehen.
+Verwende den visuellen Designer, um Steuerelemente auf dein Panel zu ziehen.
 
 #### 2. Implementiere den Code
 
@@ -352,50 +346,56 @@ Deine `IAddon`-Klasse gibt jetzt einfach eine Instanz deines neuen Panels zurüc
 // In deiner IAddon-Hauptklasse
 public UserControl? GetSettingsControl(IAddonHost host)
 {
-    // Erstelle und gib einfach dein benutzerdefiniertes UI-Panel zurück.
-    // Übergib den 'host', damit es die Theme-Farben verwenden kann!
     return new MeineEinstellungenPanel(host);
 }
 
 // Und lasse die alte Methode leer
 public IEnumerable<AddonControl> GetSettingsControls() => [];
 ```
-
-Der Code für deine `MeineEinstellungenPanel.cs` wird so aussehen. Der Schlüssel ist, **das Theme des Cores auf deine benutzerdefinierte UI anzuwenden.**
+Der Code für deine `MeineEinstellungenPanel.cs` wendet das Theme des Cores auf deine UI an:
 
 ```csharp
 // In deiner MeineEinstellungenPanel.cs-Datei
 using SCOverlay.API;
-using System.Drawing; // Benötigt für Color und Point
 using System.Windows.Forms;
 
 public partial class MeineEinstellungenPanel : UserControl
 {
     private readonly IAddonHost _host;
-    private Label infoLabel;
-    private TrackBar volumeSlider;
 
     public MeineEinstellungenPanel(IAddonHost host)
     {
-        InitializeComponent(); // Lädt die Steuerelemente aus dem Designer (falls du ihn verwendest)
+        InitializeComponent(); // Lädt die Steuerelemente aus dem Designer
         _host = host;
 
-        // --- Steuerelemente programmatisch erstellen ---
-        infoLabel = new Label { Text = "Lautstärke einstellen:", Location = new Point(10, 15) };
-        volumeSlider = new TrackBar { Location = new Point(10, 40), Width = 200, Maximum = 100 };
-        this.Controls.Add(infoLabel);
-        this.Controls.Add(volumeSlider);
-        
-        ApplyTheme(); // Wende das Theme des Cores auf deine UI an
+        // Wende das Theme auf alle Steuerelemente an
+        ApplyThemeToAllControls(this); 
     }
 
-    private void ApplyTheme()
+    private void ApplyThemeToAllControls(Control parent)
     {
-        // Verwende das Theme vom Host, um deine Steuerelemente zu gestalten
-        this.BackColor = _host.Theme_Background;
-        this.infoLabel.ForeColor = _host.Theme_Text;
-        this.infoLabel.Font = _host.Theme_TextFont;
-        this.volumeSlider.TickColor = _host.Theme_Accent;
+        // Setze die Hintergrundfarbe des Panels
+        parent.BackColor = _host.Theme_Background;
+
+        foreach (Control control in parent.Controls)
+        {
+            control.ForeColor = _host.Theme_Text;
+            control.Font = _host.Theme_TextFont;
+
+            if (control is Button button)
+            {
+                var brush = _host.Theme_ButtonNormalBrush as System.Drawing.SolidBrush;
+                if (brush != null) button.BackColor = brush.Color;
+                button.FlatStyle = FlatStyle.Flat;
+                button.FlatAppearance.BorderSize = 0;
+            }
+            
+            // Rekursiv für Container-Controls wie GroupBox oder Panel
+            if (control.HasChildren)
+            {
+                ApplyThemeToAllControls(control);
+            }
+        }
     }
 }
 ```
@@ -405,26 +405,23 @@ Dieser Ansatz ermöglicht dir eine professionelle, vollständig benutzerdefinier
 
 ### Lizenzierung für Premium-Addons
 
-Möchtest du dein Addon für Unterstützer anbieten? Das SCOverlay-System ist dafür ausgelegt. Dies ist ein kollaborativer Prozess. Du kannst eine `LicenseId` nicht selbst erfinden; sie muss vom SCOverlay-Team generiert und in den Core integriert werden.
+Möchtest du dein Addon für Unterstützer anbieten? Dies ist ein kollaborativer Prozess.
 
-Der Prozess:
-
-1.  **Entwickle dein Addon:** Konzentriere dich zuerst auf die Entwicklung deines Addons.
-2.  **Kontaktiere uns:** Wenn es fertig ist, kontaktiere den Ersteller (BlugDeg) über ein GitHub-Issue (siehe Kapitel 9).
-3.  **Integration:** Wir werden mit dir zusammenarbeiten, um eine eindeutige `LicenseId` auf dem Lizenzserver zu erstellen und sie in das nächste SCOverlay-Release zu integrieren.
-4.  **Implementierung:** Du erhältst die offizielle ID von uns. Erst dann fügst du das Attribut zu deiner Addon-Klasse hinzu.
+1.  **Entwickle dein Addon.**
+2.  **Kontaktiere uns:** Wenn es fertig ist, kontaktiere den Ersteller (BlugDeg) über ein GitHub-Issue.
+3.  **Integration:** Wir generieren eine eindeutige `LicenseId` für dich.
+4.  **Implementierung:** Du fügst das Attribut zu deiner Addon-Klasse hinzu.
 
 ```csharp
-// Beispiel: Du hast die ID "MeinSuperAddon" vom Ersteller erhalten.
 [Addon(LicenseId = "MeinSuperAddon")]
 public class MeinPremiumAddon : IAddon { /* ... */ }
 ```
 
 ### Dos & Don'ts
 
-*   ✅ **Events deabonnieren:** Deabonniere in deiner `Shutdown()`-Methode immer Events wie `host.OnGlobalHotkey -= MeinHandler;`, um Speicherlecks zu vermeiden.
-*   ❌ **Blockiere niemals `Draw()`:** Führe keine Datei-E/A, Netzwerkanfragen oder langen Schleifen in der `Draw`-Methode aus. Dies führt zu Ruckeln.
-*   ❌ **Gehe nicht von einem UI-Thread aus:** Wenn du die UI aus einem Hintergrund-Task aktualisierst, verwende `meinControl.BeginInvoke(...)`, um Abstürze zu vermeiden.
+*   ✅ **Ressourcen freigeben:** Rufe `Dispose()` für alle Fenster oder UserControls auf, die du erstellst, normalerweise in deiner `Shutdown()`-Methode, um Speicherlecks zu vermeiden.
+*   ❌ **Blockiere niemals `Draw()`:** Führe keine langen Operationen in `Draw` aus. Dies führt zu Ruckeln.
+*   ❌ **Gehe nicht von einem UI-Thread aus:** Wenn du die UI aus einem Hintergrund-Task aktualisierst, verwende `meinControl.BeginInvoke(...)`.
 
 ## Kapitel 8: Fehlerbehebung: Häufige Probleme lösen
 
@@ -432,7 +429,7 @@ public class MeinPremiumAddon : IAddon { /* ... */ }
 
 *   **Falsche Ordnerstruktur:** Der Ordner in `%AppData%\SCOverlay\addons` muss exakt denselben Namen haben wie deine DLL-Datei (ohne `.dll`).
 *   **"Lokale Kopie" ist True:** Der `SCOverlay.API`-Verweis muss "Lokale Kopie" auf "Nein" (False) gesetzt haben.
-*   **Startfehler:** Überprüfe die `debug.log` in `%AppData%\SCOverlay\`. Ein Fehler in deiner `Initialize`-Methode verhindert das Laden des Addons.
+*   **Startfehler:** Überprüfe die `debug.log` in `%AppData%\SCOverlay\`.
 
 **"Meine UI-Änderung wird nicht angezeigt!"**
 
@@ -440,26 +437,10 @@ public class MeinPremiumAddon : IAddon { /* ... */ }
 
 **"Mein Addon verschwindet plötzlich!"**
 
-*   **Ursache:** Der Performance Watchdog hat dein Addon entladen, weil es zu viel CPU verbraucht hat.
-*   **Lösung:** Optimiere deinen Code (besonders `Draw()`). Für kurze, absichtlich rechenintensive Aufgaben, umschließe sie mit `RequestHighPerformanceMode`.
+*   **Ursache:** Der Performance Watchdog oder der Hotkey-Failsafe hat dein Addon ausgeworfen.
+*   **Lösung:** Überprüfe die `debug.log` auf `CRITICAL`-Meldungen. Dein Addon hat einen schweren Fehler verursacht.
 
 ## Kapitel 9: Werde Teil der Entwicklung!
 
 Dein Beitrag ist wertvoll. Deine Ideen und deine Hilfe sind immer willkommen.
-
-### Wo du Hilfe findest
-
-➡️ **Stelle eine Frage im `developer-need-help`-Channel**
-Erstelle ein neues Issue mit diesem Label. Keine Frage ist zu einfach!
-
-### Gestalte die Zukunft der API!
-
-➡️ **Schlage ein neues API-Feature vor**
-Wenn du eine Idee für ein neues Werkzeug in der `IAddonHost`-Werkzeugkiste hast, lass es uns wissen!
-
-### Schlage ein lizenziertes Addon vor
-
-➡️ **Fordere eine neue Lizenz-ID an**
-Erstelle ein Issue, um dein Premium-Addon-Projekt vorzustellen.
-
-Wir sind gespannt, was du erschaffen wirst
+Erstelle ein Issue auf GitHub, um Hilfe zu erhalten oder Features vorzuschlagen. Wir sind gespannt, was du erschaffen wirst!
