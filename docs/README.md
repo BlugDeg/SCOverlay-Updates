@@ -73,8 +73,8 @@ Once installed, simply launch SCOverlay, activate it with your key, and you're r
 
 To ensure you get the most out of SCOverlay, we've prepared detailed documentation.
 
--   **New User?** Our **[User Manual](docs/MANUAL.md)** provides a step-by-step guide on installation, configuration, and using the included addons.
--   **Developer?** The **[Developer SDK Manual](docs/SDK_MANUAL.md)** is your comprehensive guide to building your own addons on the SCOverlay platform.
+-   **New User?** Our **[User Manual](MANUAL.md)** provides a step-by-step guide on installation, configuration, and using the included addons.
+-   **Developer?** The **[Developer SDK Manual](SDK_MANUAL.md)** is your comprehensive guide to building your own addons on the SCOverlay platform.
 
 For quick navigation, you can also use the buttons at the top of this page.
 
