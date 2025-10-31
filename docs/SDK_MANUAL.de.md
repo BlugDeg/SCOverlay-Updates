@@ -142,18 +142,22 @@ Bevor Sie loslegen, installieren Sie bitte diese beiden Dinge. Sie sind **kosten
     *   Klicken Sie auf "Weiter".
 4.  **Framework wählen:** Wählen Sie **.NET 8.0 (Langzeitunterstützung)** und klicken Sie auf "Erstellen".
 5.  **Aufräumen:** Im Projektmappen-Explorer (rechte Seite), löschen Sie die automatisch erstellte Datei `Class1.cs`.
-6.  **API-Referenz hinzufügen:**
-    *   Finden Sie Ihren SCOverlay-Installationsordner (standardmäßig `C:\Program Files (x86)\SCOverlay`).
-    *   Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf **Abhängigkeiten > Assemblyverweis hinzufügen...**.
-    *   Klicken Sie auf **"Durchsuchen..."** und wählen Sie die `SCOverlay.API.dll` aus dem Installationsordner aus.
-    *   **SEHR WICHTIG:** Klicken Sie auf die neu hinzugefügte `SCOverlay.API` unter `Abhängigkeiten > Assemblys`, drücken Sie `F4`, um die Eigenschaften anzuzeigen, und setzen Sie **"Lokale Kopie" auf "Nein" (False)**. Dies verhindert Versionskonflikte.
+6.  **API-Referenz hinzufügen (Der wichtigste Schritt):**
+    *   **Neueste API herunterladen:** Laden Sie **immer** die aktuellste Version der `SCOverlay.API.dll` direkt von der offiziellen Quelle herunter. Dies stellt sicher, dass Sie gegen die neueste Version entwickeln und Zugriff auf alle Features haben.
+        *   **Offizieller Download-Link:** [https://github.com/BlugDeg/SCOverlay-Updates/blob/main/addons/SCOverlay.API.dll?raw=true](https://github.com/BlugDeg/SCOverlay-Updates/blob/main/addons/SCOverlay.API.dll?raw=true)
+    *   **Speichern und Referenzieren:**
+        *   Erstellen Sie in Ihrem Projektordner (z.B. in `C:\Dev\SCOverlay-Addons\MeinErstesAddon`) einen neuen Unterordner namens `lib`.
+        *   Speichern Sie die heruntergeladene `SCOverlay.API.dll` in diesem `lib`-Ordner.
+        *   Klicken Sie in Visual Studio im Projektmappen-Explorer mit der rechten Maustaste auf **Abhängigkeiten > Assemblyverweis hinzufügen...**.
+        *   Klicken Sie auf **"Durchsuchen..."** und wählen Sie die `SCOverlay.API.dll` aus Ihrem neu erstellten `lib`-Ordner aus.
+    *   **SEHR WICHTIG - Lokale Kopie verhindern:** Klicken Sie auf die neu hinzugefügte `SCOverlay.API` unter `Abhängigkeiten > Assemblys`, drücken Sie `F4`, um die Eigenschaften anzuzeigen, und setzen Sie **"Lokale Kopie" auf "Nein" (False)**. Dies ist entscheidend, um Versionskonflikte zu vermeiden.
 
 ### Schritt 2: Die Projektdatei (`.csproj`) – Die Automatisierungs-Magie
 
 Diese Datei ist der Bauplan für Ihr Projekt. Wir fügen hier eine Automatisierung ein, damit Ihr Add-on nach jedem Build direkt in den richtigen SCOverlay-Ordner kopiert wird.
 
 1.  Doppelklicken Sie im Projektmappen-Explorer auf den Projektnamen (`MeinErstesAddon`). Die `.csproj`-Datei wird als Text geöffnet.
-2.  **Ersetzen Sie den gesamten Inhalt** der `.csproj`-Datei mit diesem Code. **Achten Sie darauf, den `HintPath` anzupassen**, falls Ihr SCOverlay woanders installiert ist!
+2.  **Ersetzen Sie den gesamten Inhalt** der `.csproj`-Datei mit diesem Code.
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -173,9 +177,10 @@ Diese Datei ist der Bauplan für Ihr Projekt. Wir fügen hier eine Automatisieru
     <!-- Dieser Block verweist auf die SCOverlay API, die für die Entwicklung benötigt wird. -->
     <Reference Include="SCOverlay.API">
       <!-- 
-        !!! WICHTIG: PASSE DIESEN PFAD AN DEINEN SCOVERLAY-INSTALLATIONSORDNER AN !!!
+        !!! WICHTIG: Dieser Pfad zeigt auf die API.dll, die Sie in den 'lib'-Ordner 
+        Ihres Projekts heruntergeladen haben.
       -->
-      <HintPath>C:\Program Files (x86)\SCOverlay\SCOverlay.API.dll</HintPath>
+      <HintPath>lib\SCOverlay.API.dll</HintPath>
       <Private>false</Private> <!-- Entspricht "Lokale Kopie: Nein" -->
     </Reference>
   </ItemGroup>
