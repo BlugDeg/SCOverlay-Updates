@@ -142,18 +142,22 @@ Before you start, please install these two things. They are **free and essential
     *   Click "Next".
 4.  **Choose a framework:** Select **.NET 8.0 (Long-term support)** and click "Create".
 5.  **Clean up:** In the Solution Explorer (right side), delete the automatically created `Class1.cs` file.
-6.  **Add API reference:**
-    *   Find your SCOverlay installation folder (by default `C:\Program Files (x86)\SCOverlay`).
-    *   In the Solution Explorer, right-click on **Dependencies > Add Assembly Reference...**.
-    *   Click **"Browse..."** and select the `SCOverlay.API.dll` from the installation folder.
-    *   **VERY IMPORTANT:** Click on the newly added `SCOverlay.API` under `Dependencies > Assemblies`, press `F4` to show the properties, and set **"Copy Local" to "No" (False)**. This prevents version conflicts.
+6.  **Add API Reference (The Most Important Step):**
+    *   **Download the Latest API:** Always download the most current version of `SCOverlay.API.dll` directly from the official source. This ensures you are developing against the latest version and have access to all features.
+        *   **Official Download Link:** [https://github.com/BlugDeg/SCOverlay-Updates/blob/main/addons/SCOverlay.API.dll?raw=true](https://github.com/BlugDeg/SCOverlay-Updates/blob/main/addons/SCOverlay.API.dll?raw=true)
+    *   **Save and Reference:**
+        *   In your project folder (e.g., in `C:\Dev\SCOverlay-Addons\MyFirstAddon`), create a new subfolder named `lib`.
+        *   Save the downloaded `SCOverlay.API.dll` into this `lib` folder.
+        *   In Visual Studio, right-click on **Dependencies > Add Assembly Reference...**.
+        *   Click **"Browse..."** and select the `SCOverlay.API.dll` from your newly created `lib` folder.
+    *   **VERY IMPORTANT - Prevent Local Copy:** Click on the newly added `SCOverlay.API` under `Dependencies > Assemblies`, press `F4` to show the properties, and set **"Copy Local" to "No" (False)**. This is crucial to avoid version conflicts.
 
 ### Step 2: The Project File (`.csproj`) – The Automation Magic
 
 This file is the blueprint for your project. We'll add some automation here so that your add-on is copied directly to the correct SCOverlay folder after every build.
 
 1.  In the Solution Explorer, double-click on the project name (`MyFirstAddon`). The `.csproj` file will open as text.
-2.  **Replace the entire content** of the `.csproj` file with this code. **Be sure to adjust the `HintPath`** if your SCOverlay is installed elsewhere!
+2.  **Replace the entire content** of the `.csproj` file with this code.
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -173,9 +177,10 @@ This file is the blueprint for your project. We'll add some automation here so t
     <!-- This block references the SCOverlay API, which is required for development. -->
     <Reference Include="SCOverlay.API">
       <!-- 
-        !!! IMPORTANT: ADJUST THIS PATH TO YOUR SCOVERLAY INSTALLATION FOLDER !!!
+        !!! IMPORTANT: This path points to the API.dll you downloaded 
+        into your project's 'lib' folder.
       -->
-      <HintPath>C:\Program Files (x86)\SCOverlay\SCOverlay.API.dll</HintPath>
+      <HintPath>lib\SCOverlay.API.dll</HintPath>
       <Private>false</Private> <!-- Corresponds to "Copy Local: No" -->
     </Reference>
   </ItemGroup>
