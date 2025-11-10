@@ -645,9 +645,15 @@ Der `IAddonHost` ist Ihre Brücke zu allen Features von SCOverlay. Sie erhalten 
 *   `ISoundService Sound { get; }`
     *   `PlayFile(...)`: Spielt eine Sounddatei asynchron ab, ohne das Overlay einzufrieren.
 *   `IWindowService Window { get; }`
-    *   `ShowNotification(...)`: Zeigt eine kurze, nicht-blockierende "Toast"-Benachrichtigung an.
+    *   `ShowToast(message, title, level, durationSeconds)`: **(NEU & VERBESSERT)** Zeigt eine moderne, thematisch gestaltete "Toast"-Benachrichtigung an. Ideal für kurze Status-Updates, Erfolgsmeldungen oder Warnungen.
+        *   `message`: Der Haupttext der Benachrichtigung.
+        *   `title`: Der optionale Titel.
+        *   `level`: Die Art (`Info`, `Success`, `Warning`, `Error`), welche die Akzentfarbe bestimmt.
+        *   `durationSeconds`: Die optionale Anzeigedauer in Sekunden (Standard: 5).
+    *   `ShowRainbowToast(message, title, durationSeconds)`: **(NEU)** Zeigt einen speziellen Toast an, dessen Akzentfarbe und Titel in einer schnellen Regenbogen-Animation ("Disco-Effekt") durchlaufen. Perfekt für besondere Ereignisse.
+    *   `ShowNotification(...)`: Zeigt eine bildschirmfüllende HUD-Nachricht an (basierend auf `CustomNotificationOptions`). Nützlich für grosse, zentrierte Texte, nicht für Pop-ups.
     *   `CreateThemedWindow(...)`: Erstellt ein neues, leeres, benutzerdefiniertes Fenster (wie das Haupt-Overlay). **Nicht für Standard-Controls wie Buttons geeignet.**
-    *   `CreateStandardWindow(...)`: **(NEU)** Erstellt ein neues Fenster, das das Theme erbt und **perfekt für das Hosten von Standard-Controls** wie Buttons, Labels etc. geeignet ist. Dies ist die richtige Wahl für interaktive Dialoge.
+    *   `CreateStandardWindow(...)`: Erstellt ein neues Fenster, das das Theme erbt und **perfekt für das Hosten von Standard-Controls** wie Buttons, Labels etc. geeignet ist. Dies ist die richtige Wahl für interaktive Dialoge.
     *   `Show/HideFilterOverlay(...)`: Zeigt einen bildschirmfüllenden Farbfilter an oder versteckt ihn.
 *   `Task<Image> TakeScreenshotAsync()`: Erstellt asynchron einen Screenshot des Spielbildschirms.
 
