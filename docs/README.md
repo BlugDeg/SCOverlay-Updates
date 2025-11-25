@@ -35,7 +35,7 @@
 <!-- Badges -->
 <p align="center">
   <a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/LICENSE"><img src="https://img.shields.io/github/license/BlugDeg/SCOverlay-Updates" alt="License"></a>
-  <a href="https://www.patreon.com/cw/BlugDeg"><img src="https://img.shields.io/badge/Patreon-Support%20Us-orange" alt="Patreon"></a>
+  <a href="https://scoverlay.it-en.ch/referral/scoverlay-github"><img src="https://img.shields.io/badge/Donate-Support%20Us-orange" alt="Donate"></a>
   <a href="https://github.com/BlugDeg/SCOverlay-Updates/issues"><img src="https://img.shields.io/badge/Issue%20Council-Active-brightgreen" alt="Status"></a>
 </p>
 
@@ -59,8 +59,8 @@ Our philosophy is simple: **Performance First, Modularity Always.** We provide a
 
 SCOverlay is a supporter-driven project. Your support through **Patreon** not only grants you access but also fuels the continuous development of the platform and its addons.
 
-1.  **Become a Patron:** Visit our official Patreon page and choose a membership tier that suits you.
-    <br>➡️ **[https://www.patreon.com/cw/BlugDeg](https://www.patreon.com/cw/BlugDeg)**
+1.  **Become a Patron:** Visit our official age and choose a membership tier that suits you.
+    <br>➡️ **https://scoverlay.it-en.ch/referral/scoverlay-github**
 
 2.  **Receive Your Welcome Email:** After joining, you will get an email with everything you need:
     *   Your personal **License Key** to activate the software.
