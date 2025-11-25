@@ -1,16 +1,16 @@
 <p align="center">
 <!-- Readme Links -->
-<a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/README.md"><img src="https://img.shields.io/badge/Readme-007bff?style=for-the-badge" alt="Readme"></a><!--
---><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/README.md"><img src="https://img.shields.io/badge/EN-ff6f00?style=for-the-badge" alt="English"></a><!--
---><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/README.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
+<a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/README.de.md"><img src="https://img.shields.io/badge/Liesmich-007bff?style=for-the-badge" alt="Liesmich"></a><!--
+--><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/README.md"><img src="https://img.shields.io/badge/EN-555?style=for-the-badge" alt="English"></a><!--
+--><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/README.de.md"><img src="https://img.shields.io/badge/DE-ff6f00?style=for-the-badge" alt="Deutsch"></a>
 &nbsp;&nbsp;|&nbsp;&nbsp;
 <!-- Manual Links -->
-<a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/MANUAL.md"><img src="https://img.shields.io/badge/Manual-555?style=for-the-badge" alt="Manual"></a><!--
+<a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/MANUAL.de.md"><img src="https://img.shields.io/badge/Anleitung-555?style=for-the-badge" alt="Anleitung"></a><!--
 --><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/MANUAL.md"><img src="https://img.shields.io/badge/EN-555?style=for-the-badge" alt="English"></a><!--
 --><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
 &nbsp;&nbsp;|&nbsp;&nbsp;
 <!-- Developer/SDK Links -->
-<a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/SDK_MANUAL.md"><img src="https://img.shields.io/badge/Developer-555?style=for-the-badge" alt="Developer"></a><!--
+<a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/Entwickler-555?style=for-the-badge" alt="Entwickler"></a><!--
 --><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/SDK_MANUAL.md"><img src="https://img.shields.io/badge/EN-555?style=for-the-badge" alt="English"></a><!--
 --><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
 </p>
@@ -27,58 +27,58 @@
 <h1 align="center">SCOverlay</h1>
 
 <p align="center">
-  <strong>Your Modular Cockpit Assistant for Star Citizen.</strong>
+  <strong>Dein modularer Cockpit-Assistent für Star Citizen.</strong>
   <br>
-  Enhance your gameplay with a high-performance, fully customizable overlay platform built for and by the community.
+  Verbessere dein Spielerlebnis mit einer leistungsstarken, vollständig anpassbaren Overlay-Plattform, die von und für die Community entwickelt wurde.
 </p>
 
 <!-- Badges -->
 <p align="center">
-  <a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/LICENSE"><img src="https://img.shields.io/github/license/BlugDeg/SCOverlay-Updates" alt="License"></a>
-  <a href="https://scoverlay.it-en.ch/referral/scoverlay-github"><img src="https://img.shields.io/badge/Donate-Support%20Us-orange" alt="Donate"></a>
-  <a href="https://github.com/BlugDeg/SCOverlay-Updates/issues"><img src="https://img.shields.io/badge/Issue%20Council-Active-brightgreen" alt="Status"></a>
+  <a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/LICENSE"><img src="https://img.shields.io/github/license/BlugDeg/SCOverlay-Updates" alt="Lizenz"></a>
+  <a href="https://scoverlay.it-en.ch/referral/scoverlay-github"><img src="https://img.shields.io/badge/Spenden-Unterstütze%20Uns-orange" alt="Spenden"></a>
+  <a href="https://github.com/BlugDeg/SCOverlay-Updates/issues"><img src="https://img.shields.io/badge/Issue%20Council-Aktiv-brightgreen" alt="Status"></a>
 </p>
 
 ---
 
-## What is SCOverlay?
+## Was ist SCOverlay?
 
-**SCOverlay is not just another tool—it's an ecosystem.** It is a lightweight, powerful, and stable in-game overlay for Star Citizen, designed from the ground up to be extended. Whether you need a precise timer for hangar doors, a real-time intelligence monitor for player encounters, or a quick way to display your trade route maps, SCOverlay provides the platform to make it happen.
+**SCOverlay ist nicht nur ein weiteres Tool – es ist ein Ökosystem.** Es ist ein leichtes, leistungsstarkes und stabiles In-Game-Overlay für Star Citizen, das von Grund auf für Erweiterbarkeit konzipiert wurde. Ob du einen präzisen Timer für Hangartore, einen Echtzeit-Aufklärungsmonitor für Spielerkontakte oder eine schnelle Möglichkeit zur Anzeige deiner Handelsroutenkarten benötigst – SCOverlay bietet die Plattform dafür.
 
-Our philosophy is simple: **Performance First, Modularity Always.** We provide a rock-solid core so that you and the developer community can build the features you need without ever compromising your framerate.
+Unsere Philosophie ist einfach: **Leistung zuerst, Modularität immer.** Wir bieten einen grundsoliden Kern, damit du und die Entwickler-Community die Funktionen erstellen könnt, die ihr benötigt, ohne jemals eure Framerate zu beeinträchtigen.
 
-## Key Features
+## Hauptmerkmale
 
--   🚀 **Extensible Addon Architecture:** The heart of SCOverlay. A clean and stable API allows developers to easily create and integrate new features.
--   ⚡ **Performance-Driven Core:** A built-in "Performance Watchdog" continuously monitors system load to prevent frame drops, ensuring a smooth gaming experience.
--   🎨 **Fully Customizable UI:** Move, resize, and style the overlay to perfectly match your cockpit setup.
--   ⌨️ **Robust Hotkey System:** Built with low-level keyboard hooks to guarantee reliability, even in the most intense dogfights.
--   🔄 **Integrated Auto-Updater:** The core application and all addons receive updates seamlessly, keeping your toolkit on the cutting edge.
+-   🚀 **Erweiterbare Addon-Architektur:** Das Herzstück von SCOverlay. Eine saubere und stabile API ermöglicht es Entwicklern, einfach neue Funktionen zu erstellen und zu integrieren.
+-   ⚡ **Leistungsorientierter Kern:** Ein integrierter „Performance Watchdog“ überwacht kontinuierlich die Systemlast, um Framedrops zu verhindern und ein flüssiges Spielerlebnis zu gewährleisten.
+-   🎨 **Vollständig anpassbare Benutzeroberfläche:** Verschiebe, ändere die Grösse und gestalte das Overlay so, dass es perfekt zu deinem Cockpit-Setup passt.
+-   ⌨️ **Robustes Hotkey-System:** Entwickelt mit Low-Level-Keyboard-Hooks, um auch in den intensivsten Dogfights Zuverlässigkeit zu garantieren.
+-   🔄 **Integrierter Auto-Updater:** Die Kernanwendung und alle Addons erhalten nahtlos Updates, sodass dein Toolkit immer auf dem neuesten Stand ist.
 
-## 🔑 How To Get Access
+## 🔑 Wie du Zugang erhältst
 
-SCOverlay is a supporter-driven project. Your support through **Patreon** not only grants you access but also fuels the continuous development of the platform and its addons.
+SCOverlay ist ein von Unterstützern getragenes Projekt. Deine Unterstützung über **Patreon** gewährt dir nicht nur Zugang, sondern treibt auch die kontinuierliche Entwicklung der Plattform und ihrer Addons voran.
 
-1.  **Become a Patron:** Visit our official age and choose a membership tier that suits you.
+1.  **Werde ein Patron:** Besuche unsere offizielle Seite und wähle eine für dich passende Mitgliedschaftsstufe.
     <br>➡️ **https://scoverlay.it-en.ch/referral/scoverlay-github**
 
-2.  **Receive Your Welcome Email:** After joining, you will get an email with everything you need:
-    *   Your personal **License Key** to activate the software.
-    *   A **Download Link** for the latest installer.
+2.  **Erhalte deine Willkommens-E-Mail:** Nach dem Beitritt erhältst du eine E-Mail mit allem, was du brauchst:
+    *   Deinen persönlichen **Lizenzschlüssel** zur Aktivierung der Software.
+    *   Einen **Download-Link** für den neuesten Installer.
 
-Once installed, simply launch SCOverlay, activate it with your key, and you're ready to go!
+Nach der Installation starte einfach SCOverlay, aktiviere es mit deinem Schlüssel, und schon bist du startklar!
 
-## Where to Go From Here?
+## Wie geht es weiter?
 
-To ensure you get the most out of SCOverlay, we've prepared detailed documentation.
+Um sicherzustellen, dass du das Beste aus SCOverlay herausholst, haben wir eine detaillierte Dokumentation vorbereitet.
 
--   **New User?** Our **[User Manual](MANUAL.md)** provides a step-by-step guide on installation, configuration, and using the included addons.
--   **Developer?** The **[Developer SDK Manual](SDK_MANUAL.md)** is your comprehensive guide to building your own addons on the SCOverlay platform.
+-   **Neuer Benutzer?** Unsere **[Anleitung](MANUAL.de.md)** bietet eine Schritt-für-Schritt-Anleitung zur Installation, Konfiguration und Nutzung der enthaltenen Addons.
+-   **Entwickler?** Das **[Entwickler-SDK-Handbuch](SDK_MANUAL.de.md)** ist dein umfassender Leitfaden zum Erstellen eigener Addons auf der SCOverlay-Plattform.
 
-For quick navigation, you can also use the buttons at the top of this page.
+Für eine schnelle Navigation kannst du auch die Schaltflächen am Anfang dieser Seite verwenden.
 
-## Get Involved!
+## Mach mit!
 
-Your feedback and ideas are the lifeblood of this project. Whether you've found a bug, have a suggestion for a new addon, or want to contribute yourself, our GitHub Issue Council is the best place to do it.
+Dein Feedback und deine Ideen sind das Lebenselixier dieses Projekts. Ob du einen Fehler gefunden hast, einen Vorschlag für ein neues Addon hast oder selbst beitragen möchtest – unser GitHub Issue Council ist der beste Ort dafür.
 
-➡️ **[Join the Discussion on GitHub](https://github.com/BlugDeg/SCOverlay-Updates/issues)**
+➡️ **[Beteilige dich an der Diskussion auf GitHub](https://github.com/BlugDeg/SCOverlay-Updates/issues)**
