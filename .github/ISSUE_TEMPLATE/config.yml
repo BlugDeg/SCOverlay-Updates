@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security issue
+    url: https://github.com/BlugDeg/SCOverlay-Updates/blob/main/SECURITY.md
+    about: Read SECURITY.md first. For a vulnerability, open an issue titled "Security" without technical details and you will get a private channel.
+  - name: Website, downloads and add-on gallery
+    url: https://scoverlay.it-en.ch/
+    about: The newest installer, the add-on gallery and the patch notes live on the website.

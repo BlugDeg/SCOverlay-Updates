@@ -1,40 +1,26 @@
 <p align="center">
 <!-- Readme Links -->
-<a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/README.md"><img src="https://img.shields.io/badge/Readme-555?style=for-the-badge" alt="Readme"></a><!--
---><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/README.md"><img src="https://img.shields.io/badge/EN-555?style=for-the-badge" alt="English"></a><!--
---><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/README.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
+<a href="README.md"><img src="https://img.shields.io/badge/Readme-555?style=for-the-badge" alt="Readme"></a><!--
+--><a href="README.md"><img src="https://img.shields.io/badge/EN-555?style=for-the-badge" alt="English"></a><!--
+--><a href="README.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
 &nbsp;&nbsp;|&nbsp;&nbsp;
 <!-- Manual Links -->
-<a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/MANUAL.md"><img src="https://img.shields.io/badge/Manual-007bff?style=for-the-badge" alt="Manual"></a><!--
---><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/MANUAL.md"><img src="https://img.shields.io/badge/EN-ff6f00?style=for-the-badge" alt="English"></a><!--
---><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
+<a href="MANUAL.md"><img src="https://img.shields.io/badge/Manual-007bff?style=for-the-badge" alt="Manual"></a><!--
+--><a href="MANUAL.md"><img src="https://img.shields.io/badge/EN-ff6f00?style=for-the-badge" alt="English"></a><!--
+--><a href="MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
 &nbsp;&nbsp;|&nbsp;&nbsp;
 <!-- Developer/SDK Links -->
-<a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/SDK_MANUAL.md"><img src="https://img.shields.io/badge/Developer-555?style=for-the-badge" alt="Developer"></a><!--
---><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/SDK_MANUAL.md"><img src="https://img.shields.io/badge/EN-555?style=for-the-badge" alt="English"></a><!--
---><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
-<p align="center">
-  <svg width="150" height="150" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
-    <path d="M12 17V12" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M12 3C12 3 15 6 15 9C15 12 12 17 12 17" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M12 3C12 3 9 6 9 9C9 12 12 17 12 17" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
+<a href="SDK_MANUAL.md"><img src="https://img.shields.io/badge/Developer-555?style=for-the-badge" alt="Developer"></a><!--
+--><a href="SDK_MANUAL.md"><img src="https://img.shields.io/badge/EN-555?style=for-the-badge" alt="English"></a><!--
+--><a href="SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
 </p>
 
 <h1 align="center">SCOverlay User Manual</h1>
 
 <p align="center">
-  <strong>The complete guide to installing, configuring, and using all features of SCOverlay.</strong>
+  <strong>Installing, configuring and using SCOverlay and its add-ons.</strong>
   <br>
-  Your go-to resource for mastering the tool.
-</p>
-
-<!-- Badges -->
-<p align="center">
-  <a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/LICENSE"><img src="https://img.shields.io/github/license/BlugDeg/SCOverlay-Updates" alt="License"></a>
-  <a href="https://www.patreon.com/cw/BlugDeg"><img src="https://img.shields.io/badge/Patreon-Support%20Us-orange" alt="Patreon"></a>
-  <a href="https://github.com/BlugDeg/SCOverlay-Updates/issues"><img src="https://img.shields.io/badge/Issue%20Council-Active-brightgreen" alt="Status"></a>
+  Written for SCOverlay 0.0.5.x.
 </p>
 
 ---
@@ -42,114 +28,135 @@
 ## Table of Contents
 
 1.  [**Installation & First Launch**](#1-installation--first-launch)
-2.  [**Basic Controls: Your First Steps In-Game**](#2-basic-controls-your-first-steps-in-game)
-3.  [**The Main Settings Panel Explained**](#3-the-main-settings-panel-explained)
-4.  [**Addon Guides: Mastering Your Tools**](#4-addon-guides-mastering-your-tools)
-    *   [ExecTimer: The Hangar Timer](#exectimer-the-hangar-timer)
-    *   [QuickSheets: Your In-Game Image Viewer](#quicksheets-your-in-game-image-viewer)
-    *   [SpyCitizen: The Intelligence Monitor](#spycitizen-the-intelligence-monitor)
-5.  [**Troubleshooting & FAQ**](#5-troubleshooting--faq)
+2.  [**Basic Controls**](#2-basic-controls)
+3.  [**Settings**](#3-settings)
+4.  [**The Add-on Gallery**](#4-the-add-on-gallery)
+5.  [**Add-on Guides**](#5-add-on-guides)
+    *   [ExecTimer](#exectimer-the-hangar-timer)
+    *   [QuickSheets](#quicksheets-your-in-game-image-viewer)
+    *   [The other add-ons](#the-other-add-ons)
+6.  [**Updates**](#6-updates)
+7.  [**Troubleshooting & FAQ**](#7-troubleshooting--faq)
 
 ---
 
 ## 1. Installation & First Launch
 
-Welcome aboard, Citizen! Let's get you set up in a few simple steps.
+**Step 1: Download**
+-   ➡️ Get the newest installer from the website: **https://scoverlay.it-en.ch/download/core** (the link always points at the current version).
+-   ✔️ Windows SmartScreen will show a warning, because the installer is not code-signed. Click *More info → Run anyway*. If you want to check the file first, [SECURITY.md](../SECURITY.md) shows how to compare its SHA-256 with the published one.
 
-**Step 1: Download & Install**
--   ➡️ Use the download link from your Patreon welcome email to get the installer (`SCOverlay-Setup-vX.Y.Z.exe`).
--   ✔️ Run the installer. It's a standard process; you can safely click "Next" until it's finished.
+**Step 2: Install**
+-   ➡️ Run the installer and click through it.
+-   ✔️ It asks where Star Citizen is installed. Choose the `LIVE` folder (for example `C:\Program Files\Roberts Space Industries\StarCitizen\LIVE`). Add-ons use this to find `Game.log` and the game's text files. If you skip it, SCOverlay asks again on first launch, and you can change it any time under *Settings → General*.
 
-**Step 2: Launch and Find the Tray Icon**
--   ➡️ Start SCOverlay using the new shortcut on your desktop.
--   ✔️ The application runs in the background. You won't see a big window pop up. Instead, a new icon will appear in your **System Tray**. The System Tray is the area with the small icons near your clock, usually at the bottom-right of your screen.
+**Step 3: First launch**
+-   ➡️ Start SCOverlay from the Start menu or desktop shortcut.
+-   ✔️ Nothing big opens. SCOverlay lives in the **system tray**, the area with the small icons next to the clock. A right-click on its icon shows the menu (settings, exit).
+-   ✔️ On the very first start SCOverlay offers to install the default add-ons (ExecTimer, QuickSheets, a demo). Click **Yes**; they are downloaded, verified and set up, and SCOverlay restarts.
 
-**Step 3: Activate Your License**
--   ➡️ The very first time you launch SCOverlay, an activation window will appear.
--   ✔️ Find your Patreon welcome email and copy the **License Key**. It's a long string of characters.
--   ➡️ Paste the key into the activation window and click "Activate".
+That's it. Launch Star Citizen and read on.
 
-**Step 4: Automatic Addon Installation**
--   ✔️ After activation, SCOverlay might show a pop-up asking if you want to install missing default addons (like ExecTimer). **Click "Yes"**.
--   ✔️ The program will quickly download and set up these essential tools for you. It will then restart itself automatically.
+## 2. Basic Controls
 
-You are now fully installed and ready to go!
+-   **Open / close the overlay:** <kbd>Shift</kbd> + <kbd>F10</kbd> by default. Press once to show the panel, again to hide it. You can rebind it under *Settings → Shortcuts*.
+-   **The panel:** one tile per add-on. Click a tile to open that add-on's menu or window. The footer has the hotkey overview on the left and the *Gallery* and *Settings* buttons on the right.
+-   **If the hotkey doesn't reach the game:** turn on the *ScrollLock fallback* under *Settings → Shortcuts*. Then a **double-tap on <kbd>Scroll Lock</kbd>** opens the overlay; that works even in games that swallow other combinations.
+-   **Add-on hotkeys:** many add-ons have their own hotkey (listed in section 5 and under *Settings → Shortcuts*, where all of them can be rebound).
 
-## 2. Basic Controls: Your First Steps In-Game
+## 3. Settings
 
-With SCOverlay running in the background, launch Star Citizen.
+Open the overlay and click **Settings** in the footer.
 
--   **Open/Close the Overlay:** Press <kbd>Shift</kbd> + <kbd>F10</kbd>. This is your main command. Press it to show the overlay, press it again to hide it.
+-   **General**
+    *   `Language`: English (default) or German. Takes effect immediately for the core; an add-on window that is already open picks it up when you open it next.
+    *   `Star Citizen folder`: where the game is installed. Change it here if you play on PTU or moved the game.
+    *   `Start with Windows` and `Show overlay on start`: off by default. With the second one off, SCOverlay starts quietly in the tray and waits for the hotkey.
+    *   `Unlock Window`: lets you drag and resize the overlay. Lock it again when you're happy with the position.
+    *   `Connection`: shows when the website was last reached. This is the same connection the updater uses.
+    *   `Support the project`: opens the donation page in your browser.
+-   **Display**
+    *   `Overlay width / height`: size of the panel in percent of the screen.
+    *   `Tile size`: 60–200 %. Tiles keep this size no matter how large the panel is; a bigger panel shows more tiles, not bigger ones.
+    *   `Theme` and colours.
+-   **Shortcuts**
+    *   `Toggle hotkey`: click *Rebind* and press your combination.
+    *   `ScrollLock fallback`: see section 2.
+    *   Every add-on hotkey, with a short description of what it does.
+-   **Audio**: which input and output device SCOverlay uses for the sounds add-ons play.
+-   **Advanced**: tray icon on/off, the *Enable Debug Log* switch (turn it on before reporting a bug), *Open Data Folder* and a *Bug Report* shortcut.
+-   **Addons** (button in the settings): the list of installed add-ons with their versions, enable/disable per add-on, and *Install Addon from .zip* for a package you got outside the Gallery.
 
--   **Moving and Resizing the Window:**
-    1.  Press <kbd>Shift</kbd> + <kbd>F10</kbd> to open the overlay.
-    2.  Click the **"Settings"** button at the bottom of the menu.
-    3.  In the "General" tab, find the **"Unlock Window"** option and click the button next to it to switch it to **"On"**.
-    4.  Now you can drag the window around with your mouse and resize it by pulling on its edges, just like any other window.
-    5.  Once you have it positioned perfectly, it's a good idea to lock it again to prevent accidental moves.
+## 4. The Add-on Gallery
 
--   **The Lifesaver Hotkey:** If <kbd>Shift</kbd> + <kbd>F10</kbd> ever seems to not work (sometimes games can be tricky), just **double-tap the <kbd>Scroll Lock</kbd> key** on your keyboard. This is a reliable backup that will always work.
+Click **Gallery** in the footer of the main panel. Each card shows an add-on with its description, author and version.
 
-## 3. The Main Settings Panel Explained
+-   **Install** downloads the add-on, verifies it and puts it in place. A strip at the top then asks you to **restart** SCOverlay: add-ons are loaded once at startup.
+-   **Enable / Disable** switches an installed add-on off without removing it. Also needs a restart.
+-   **Remove** deletes the add-on's folder. If SCOverlay still has the add-on loaded, the removal fails with a message; disable it, restart, then remove.
+-   Clicking the picture or text of a card opens the add-on's page on the website in your browser.
 
-This is your command center for customizing the overlay itself.
+The same add-ons are listed on the website: https://scoverlay.it-en.ch/gallery
 
--   **General Tab:**
-    *   `Language`: Switch between English and German. The change is instant.
-    *   `Unlock Window`: Think of this as "Edit Mode" for the window's position and size.
+Every add-on in the Gallery is built and published by the SCOverlay maintainer from source he holds. What that means for you, and what it doesn't, is spelled out in [SECURITY.md](../SECURITY.md).
 
--   **Display Tab:**
-    *   `Overlay Width / Height`: Fine-tune the window size.
-    *   `Reset Position`: Lost the window off-screen? This button brings it back to the center.
-    *   `Theme`: Change the look and feel. `DarkSilver` and `RedShock` are presets. `Custom` lets you pick your own colors!
-
--   **Shortcuts Tab:**
-    *   `Toggle Hotkey`: Click **"Rebind"** to set your preferred hotkey combination. Choose something that doesn't conflict with your game controls!
-
-## 4. Addon Guides: Mastering Your Tools
+## 5. Add-on Guides
 
 ### ExecTimer: The Hangar Timer
 
--   **At a Glance:** A super-accurate timer that tells you exactly when the valuable Executive Hangars open and close.
--   **How to Use:**
-    1.  Open the overlay and click the **"ExecTimer"** button to enter its menu.
-    2.  Click **"Show Timer"** to open the separate timer window. You can drag this window anywhere on your screen.
--   **The `PIN` / `WIN` Button (Very Important!):**
-    *   **`PIN` (Pinned Mode):** The timer is "glued" to your screen. It stays visible **even when you hide the main overlay**. This is perfect for active gameplay.
-    *   **`WIN` (Window Mode):** The timer acts like a normal part of the overlay. It disappears when you hide the main panel and reappears when you open it.
--   **Sounds & Alerts:** ExecTimer comes with a default sound that plays when the hangar opens. In its settings menu, you can change the volume, or even select your own custom `.wav` sound file!
+-   **At a glance:** a countdown for the Executive Hangar cycle in Pyro, as a small HUD in a corner of your screen. It shows the five lamps, the current state (`HANGAR OPEN`, `HANGAR RESET`, `HANGAR CLOSED`) and the time to the next change.
+-   **HUD mode** (in the add-on's menu): `Off`, `Always`, or `With overlay` (visible only while the main panel is open). The HUD is click-through, so it never gets in the way of the game.
+-   **Corner:** pick one of the four screen corners.
+-   **Pre-warning:** a sound a few minutes before the hangar opens (default 5 min). You can change the lead time, the volume and the sound file.
+-   **Where the timing comes from:** the cycle anchor is synced from the website, because the hangar cycle shifts with every server restart and patch. If the timer is off by minutes after a patch, that is the anchor being corrected; it catches up on its own.
+-   The **?** button in the add-on opens its own help window.
 
 ### QuickSheets: Your In-Game Image Viewer
 
--   **At a Glance:** Display any image from your computer (like a trade route map, mining guide, or keybinds chart) as a window inside the game.
--   **How to Add Your Images (The Easy Way):**
-    1.  Press the <kbd>Windows Key</kbd> + <kbd>R</kbd> to open the "Run" dialog.
-    2.  Type exactly this and press Enter: `%appdata%\SCOverlay\addons\QuickSheet`
-    3.  A folder will open. Inside this folder, create a **new folder** and name it `sheets`.
-    4.  Place any `.png` or `.jpg` image files you want into this `sheets` folder. You can even create sub-folders inside `sheets` to organize them (e.g., `Mining`, `Trading`).
--   **How to Use:** In the overlay menu, click **"Quicksheets"**. You will see a menu that perfectly matches the folders and files you created. Click any item to open the image in its own resizable window. Each sheet window also has its own `PIN`/`WIN` button!
+-   **At a glance:** show your own images (trade maps, mining guides, keybind charts) in windows over the game. Three StormBreaker sheets are included.
+-   **Adding your own sheets:**
+    1.  Press <kbd>Win</kbd> + <kbd>R</kbd>, paste `%appdata%\SCOverlay\addons\QuickSheetAddon\sheets` and press Enter.
+    2.  Put `.png` or `.jpg` files in that folder. Sub-folders become sub-menus, so you can sort them (`Mining`, `Trading`, …).
+    3.  A folder that contains exactly one image named like the folder opens that image directly instead of showing a sub-menu.
+    4.  Restart SCOverlay; the menu is built at startup.
+-   **The sheet window:** zoom with the mouse wheel or the `−` / `+` / `FIT` buttons, drag the image around, `PIN` keeps the window visible while the main panel is closed (`WIN` hides it with the panel), and the button on the far right switches to fullscreen and back.
 
-### SpyCitizen: The Intelligence Monitor
+### The other add-ons
 
--   **At a Glance:** Your personal intelligence agent that reads the Star Citizen log file to give you a tactical advantage, tracking who is on your server and your combat performance.
+Each of these has its own window and, mostly, its own help page inside. Hotkeys are the defaults and can be rebound under *Settings → Shortcuts*.
 
-> **⚠️ IMPORTANT FIRST STEPS**
-> SpyCitizen needs to be configured to work. This is the most important part!
-> 1.  Open the overlay, then go to `SpyCitizen -> Settings -> Account`.
-> 2.  **Set Log Path:** Click **"Set Game.log Path"**. You must find and select the `Game.log` file for Star Citizen. It's usually located in: `C:\Program Files\Roberts Space Industries\StarCitizen\LIVE`.
-> 3.  **Set Your Name:** Click **"Set In-game Name"**. Enter your character's name **exactly** as it appears in-game. This is required for tracking your kills and deaths correctly.
+| Add-on | What it does | Hotkey |
+|---|---|---|
+| **Wingman** | Accepts missions that party members share, automatically. Turn it on before you play; it starts off on every launch so it never presses a key you didn't expect. Missions can be blacklisted. | <kbd>Shift</kbd> + <kbd>Ü</kbd> toggles it |
+| **Omnia** | Search everything the game knows: planets, moons, stations, ships, items, missions, prices with age. | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd> main window, <kbd>Shift</kbd> + <kbd>F5</kbd> quick search |
+| **OreScout** | Mining reference: ore → signature, location → ores, cluster value → ore and rock count. Optional HUD with your marked ores. | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd> |
+| **Workbench** | Blueprints: which exist, which you own (read from your logs), ingredients, salvage yield, and a value calculator. | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> |
+| **OrgaStorage** | Shared spreadsheets for your org. Pair the add-on with your website account once (a six-character code, entered at https://scoverlay.it-en.ch/verbinden). | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd> |
+| **MouseMover** | Warns you when you've been idle and then moves the mouse so the game doesn't kick you. Set the idle threshold in its menu. | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> toggles it |
+| **RepTracker** | Measure the reputation bar in the mobiGlas per contract and see what each mission is worth. A setup wizard guides the first measurement. | via its tile |
+| **CitizenHauler** | Trading companion with live UEX Corp data, route planning and route guidance. | via its tile |
+| **BetterPicture** | Photo mode with high-quality screenshots and a colour filter overlay. | via its tile |
 
--   **Features:**
-    *   **Monitor Window:** A powerful window with views for players on your current server (`Players Today`), all players you've ever seen (`History`), and detailed logs of your kills and deaths.
-    *   **HUD Alerts:** Get a simple on-screen notification when a new player joins the server, so you're never caught by surprise.
-    *   **Sound Alerts:** Want a special sound to play when a known hostile player appears? You can set that up in `Settings -> Sounds`.
--   **Pro-Tip: Using the Included Sounds:** SCOverlay comes with some ready-to-use alert sounds! When setting a sound for a category (like "Hostile"), you can navigate to this folder and pick one: `%appdata%\SCOverlay\Resources`
+## 6. Updates
 
-## 5. Troubleshooting & FAQ
+-   **At start** SCOverlay asks the website for new versions of the core and of every installed add-on. If there is one, a dialog offers to install it now.
+-   **While you play** it checks again every two hours. A new version is only announced with a small toast; nothing is installed mid-game. It's installed at the next start.
+-   Every download is verified against its published SHA-256 before it's unpacked. A download that doesn't match is deleted.
+-   Nothing is ever downloaded without you confirming it.
 
--   **Q: My antivirus is warning me about SCOverlay. Is it a virus?**
-    *   **A:** No, it is **100% safe**. SCOverlay uses low-level keyboard hooks to make its hotkeys work reliably. Some antivirus programs see this behavior and flag it as suspicious (a "false positive"). You can safely tell your antivirus to allow SCOverlay.
--   **Q: Where are all the settings and addon data stored?**
-    *   **A:** Everything is located in `%appdata%\SCOverlay`. This is where settings are saved and where you can place files for addons like QuickSheets.
+## 7. Troubleshooting & FAQ
+
+-   **Q: SmartScreen or my antivirus warns about SCOverlay. Is it safe?**
+    *   **A:** SCOverlay is not code-signed, so SmartScreen warns on every new version; that's expected and not a verdict on the file. What you *can* check is that the file is the one the website published: compare its SHA-256 with the value in `https://scoverlay.it-en.ch/api/updates/core` (the steps are in [SECURITY.md](../SECURITY.md)). Antivirus heuristics sometimes flag the global hotkey listener; the same document explains exactly what it does and why. If you don't want to trust that, don't run it; that's a legitimate choice.
+-   **Q: The hotkey does nothing in the game.**
+    *   **A:** Turn on the *ScrollLock fallback* under *Settings → Shortcuts* and double-tap <kbd>Scroll Lock</kbd>. Also make sure the combination isn't bound in the game.
+-   **Q: Where are my settings and add-on data?**
+    *   **A:** In `%appdata%\SCOverlay`. Settings are in `settings.json`, the log in `debug.log`, add-ons in `addons\`.
+-   **Q: I moved Star Citizen / I play on PTU.**
+    *   **A:** Change the folder under *Settings → General*. Add-ons that read `Game.log` follow it immediately.
+-   **Q: An add-on has disappeared from the menu.**
+    *   **A:** Look in `debug.log` for its name. Either it failed to load (a version mismatch after an update is the usual cause; reinstall it from the Gallery) or the Performance Watchdog unloaded it because it stalled the overlay.
+-   **Q: How do I remove an add-on completely?**
+    *   **A:** Gallery → *Remove*, or delete its folder under `%appdata%\SCOverlay\addons\` while SCOverlay is not running.
 -   **Q: How do I get support?**
-    *   **A:** The best way is to visit our **[GitHub Issue Council](https://github.com/BlugDeg/SCOverlay-Updates/issues)** and describe your problem.
+    *   **A:** Open an issue on GitHub: **https://github.com/BlugDeg/SCOverlay-Updates/issues**. German is as welcome as English. Attach the relevant lines from `debug.log`.

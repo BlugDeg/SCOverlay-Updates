@@ -1,19 +1,20 @@
 <p align="center">
-<!-- Readme Links -->
-<a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/README.de.md"><img src="https://img.shields.io/badge/Liesmich-007bff?style=for-the-badge" alt="Liesmich"></a><!--
---><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/README.md"><img src="https://img.shields.io/badge/EN-555?style=for-the-badge" alt="English"></a><!--
---><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/README.de.md"><img src="https://img.shields.io/badge/DE-ff6f00?style=for-the-badge" alt="Deutsch"></a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<!-- Manual Links -->
-<a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/MANUAL.de.md"><img src="https://img.shields.io/badge/Anleitung-555?style=for-the-badge" alt="Anleitung"></a><!--
---><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/MANUAL.md"><img src="https://img.shields.io/badge/EN-555?style=for-the-badge" alt="English"></a><!--
---><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
-&nbsp;&nbsp;|&nbsp;&nbsp;
-<!-- Developer/SDK Links -->
-<a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/Entwickler-555?style=for-the-badge" alt="Entwickler"></a><!--
---><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/SDK_MANUAL.md"><img src="https://img.shields.io/badge/EN-555?style=for-the-badge" alt="English"></a><!--
---><a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/docs/SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
+  <!-- Readme Links -->
+  <a href="README.md"><img src="https://img.shields.io/badge/Readme-007bff?style=for-the-badge" alt="Readme"></a><!--
+  --><a href="README.md"><img src="https://img.shields.io/badge/EN-ff6f00?style=for-the-badge" alt="English"></a><!--
+  --><a href="README.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <!-- Manual Links -->
+  <a href="MANUAL.md"><img src="https://img.shields.io/badge/Manual-555?style=for-the-badge" alt="Manual"></a><!--
+  --><a href="MANUAL.md"><img src="https://img.shields.io/badge/EN-555?style=for-the-badge" alt="English"></a><!--
+  --><a href="MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <!-- Developer/SDK Links -->
+  <a href="SDK_MANUAL.md"><img src="https://img.shields.io/badge/Developer-555?style=for-the-badge" alt="Developer"></a><!--
+  --><a href="SDK_MANUAL.md"><img src="https://img.shields.io/badge/EN-555?style=for-the-badge" alt="English"></a><!--
+  --><a href="SDK_MANUAL.de.md"><img src="https://img.shields.io/badge/DE-555?style=for-the-badge" alt="Deutsch"></a>
 </p>
+
 <!-- Header: Logo, Title, and Tagline -->
 <p align="center">
   <svg width="150" height="150" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,58 +28,86 @@
 <h1 align="center">SCOverlay</h1>
 
 <p align="center">
-  <strong>Dein modularer Cockpit-Assistent für Star Citizen.</strong>
+  <strong>Your modular cockpit assistant for Star Citizen.</strong>
   <br>
-  Verbessere dein Spielerlebnis mit einer leistungsstarken, vollständig anpassbaren Overlay-Plattform, die von und für die Community entwickelt wurde.
+  A free, lightweight in-game overlay that you extend with add-ons.
 </p>
 
 <!-- Badges -->
 <p align="center">
-  <a href="https://github.com/BlugDeg/SCOverlay-Updates/blob/main/LICENSE"><img src="https://img.shields.io/github/license/BlugDeg/SCOverlay-Updates" alt="Lizenz"></a>
-  <a href="https://scoverlay.it-en.ch/referral/scoverlay-github"><img src="https://img.shields.io/badge/Spenden-Unterstütze%20Uns-orange" alt="Spenden"></a>
-  <a href="https://github.com/BlugDeg/SCOverlay-Updates/issues"><img src="https://img.shields.io/badge/Issue%20Council-Aktiv-brightgreen" alt="Status"></a>
+  <a href="https://scoverlay.it-en.ch/"><img src="https://img.shields.io/badge/Website-scoverlay.it--en.ch-007bff" alt="Website"></a>
+  <a href="https://scoverlay.it-en.ch/download/core"><img src="https://img.shields.io/badge/Download-latest%20installer-brightgreen" alt="Download"></a>
+  <a href="https://scoverlay.it-en.ch/donate"><img src="https://img.shields.io/badge/Donate-support%20the%20project-orange" alt="Donate"></a>
+  <a href="../SECURITY.md"><img src="https://img.shields.io/badge/Security-what%20it%20does%20on%20your%20PC-555" alt="Security"></a>
+  <a href="../LICENSE.md"><img src="https://img.shields.io/badge/License-free%20of%20charge-555" alt="License"></a>
 </p>
 
 ---
 
-## Was ist SCOverlay?
+## What is SCOverlay?
 
-**SCOverlay ist nicht nur ein weiteres Tool – es ist ein Ökosystem.** Es ist ein leichtes, leistungsstarkes und stabiles In-Game-Overlay für Star Citizen, das von Grund auf für Erweiterbarkeit konzipiert wurde. Ob du einen präzisen Timer für Hangartore, einen Echtzeit-Aufklärungsmonitor für Spielerkontakte oder eine schnelle Möglichkeit zur Anzeige deiner Handelsroutenkarten benötigst – SCOverlay bietet die Plattform dafür.
+SCOverlay is a small Windows application that draws a menu over Star Citizen. Press a hotkey in the game and a panel of tiles appears, one per add-on: a hangar timer, cheat sheets, a mining reference, a game lexicon, reputation tracking, shared spreadsheets for your org, and more. Press the hotkey again and it is gone.
 
-Unsere Philosophie ist einfach: **Leistung zuerst, Modularität immer.** Wir bieten einen grundsoliden Kern, damit du und die Entwickler-Community die Funktionen erstellen könnt, die ihr benötigt, ohne jemals eure Framerate zu beeinträchtigen.
+The core only provides the window, the hotkeys, the settings and the update system. Everything you actually use is an **add-on**, and add-ons are installed, updated and switched on or off from inside the overlay.
 
-## Hauptmerkmale
+## Free, funded by donations
 
--   🚀 **Erweiterbare Addon-Architektur:** Das Herzstück von SCOverlay. Eine saubere und stabile API ermöglicht es Entwicklern, einfach neue Funktionen zu erstellen und zu integrieren.
--   ⚡ **Leistungsorientierter Kern:** Ein integrierter „Performance Watchdog“ überwacht kontinuierlich die Systemlast, um Framedrops zu verhindern und ein flüssiges Spielerlebnis zu gewährleisten.
--   🎨 **Vollständig anpassbare Benutzeroberfläche:** Verschiebe, ändere die Grösse und gestalte das Overlay so, dass es perfekt zu deinem Cockpit-Setup passt.
--   ⌨️ **Robustes Hotkey-System:** Entwickelt mit Low-Level-Keyboard-Hooks, um auch in den intensivsten Dogfights Zuverlässigkeit zu garantieren.
--   🔄 **Integrierter Auto-Updater:** Die Kernanwendung und alle Addons erhalten nahtlos Updates, sodass dein Toolkit immer auf dem neuesten Stand ist.
+There is no licence key, no account and no subscription. Download it, install it, play. If SCOverlay is useful to you, you can support its development on the website: **https://scoverlay.it-en.ch/donate**
 
-## 🔑 Wie du Zugang erhältst
+## Key features
 
-SCOverlay ist ein von Unterstützern getragenes Projekt. Deine Unterstützung über **Patreon** gewährt dir nicht nur Zugang, sondern treibt auch die kontinuierliche Entwicklung der Plattform und ihrer Addons voran.
+- **Add-on platform.** A stable, documented API; each add-on is its own DLL. See the [SDK manual](SDK_MANUAL.md) if you want to build one.
+- **In-app Gallery.** Browse, install, enable, disable and remove add-ons without leaving the game.
+- **Automatic updates** for the core and every add-on. Every download is verified against its published SHA-256 before anything is installed; a download only starts after you confirm it.
+- **Global hotkeys** that work over the fullscreen game. Default toggle: <kbd>Shift</kbd> + <kbd>F10</kbd>, rebindable.
+- **Performance Watchdog.** An add-on that stalls the overlay is unloaded instead of costing you frames.
+- **Bilingual.** English and German, switchable in the settings.
+- **No telemetry, no accounts.** What the application does on your PC is written down in [SECURITY.md](../SECURITY.md).
 
-1.  **Werde ein Patron:** Besuche unsere offizielle Seite und wähle eine für dich passende Mitgliedschaftsstufe.
-    <br>➡️ **https://scoverlay.it-en.ch/referral/scoverlay-github**
+## Download and install
 
-2.  **Erhalte deine Willkommens-E-Mail:** Nach dem Beitritt erhältst du eine E-Mail mit allem, was du brauchst:
-    *   Deinen persönlichen **Lizenzschlüssel** zur Aktivierung der Software.
-    *   Einen **Download-Link** für den neuesten Installer.
+1. **Download the newest installer:** https://scoverlay.it-en.ch/download/core
+   The website is the source of truth. The releases on this GitHub page are a mirror that older installations still use for their update check; they may lag behind.
+2. **Run the installer.** It asks where Star Citizen is installed (the `LIVE` folder) so add-ons can find `Game.log`. You can skip that and set it later under *Settings → General*.
+3. **Windows SmartScreen will warn you.** The installer is not code-signed (see [SECURITY.md](../SECURITY.md) for why, and for how to verify the download's hash instead). Choose *More info → Run anyway*.
+4. **Start SCOverlay.** It lives in the system tray. Launch Star Citizen and press <kbd>Shift</kbd> + <kbd>F10</kbd>.
 
-Nach der Installation starte einfach SCOverlay, aktiviere es mit deinem Schlüssel, und schon bist du startklar!
+The [user manual](MANUAL.md) walks through the first launch, the settings and every bundled add-on.
 
-## Wie geht es weiter?
+## Add-ons
 
-Um sicherzustellen, dass du das Beste aus SCOverlay herausholst, haben wir eine detaillierte Dokumentation vorbereitet.
+All add-ons below are available from the Gallery inside the overlay and on the [website](https://scoverlay.it-en.ch/gallery).
 
--   **Neuer Benutzer?** Unsere **[Anleitung](MANUAL.de.md)** bietet eine Schritt-für-Schritt-Anleitung zur Installation, Konfiguration und Nutzung der enthaltenen Addons.
--   **Entwickler?** Das **[Entwickler-SDK-Handbuch](SDK_MANUAL.de.md)** ist dein umfassender Leitfaden zum Erstellen eigener Addons auf der SCOverlay-Plattform.
+| Add-on | What it does |
+|---|---|
+| **ExecTimer** | Countdown for the Executive Hangar cycle in Pyro, as a small HUD in a screen corner, with a pre-warning sound. |
+| **QuickSheets** | Shows your own images (maps, guides, keybind charts) in zoomable windows over the game. Folders become menus. |
+| **Wingman** | Accepts missions that party members share, automatically, in the one or two seconds the game gives you. |
+| **Omnia** | The Star Citizen lexicon: one search box over planets, stations, ships, items, missions, prices. Quick search with <kbd>Shift</kbd> + <kbd>F5</kbd>. |
+| **OreScout** | Mining reference: ore to scanner signature, location to ores, and a cluster value back to ore and rock count. |
+| **Workbench** | Crafting: which blueprints exist, which you own (from your logs), what a blueprint needs and what it yields when broken down, with a value calculator. |
+| **RepTracker** | Turns the mobiGlas reputation bar into numbers: measure it per contract and see what each mission is worth. |
+| **OrgaStorage** | Shared spreadsheets for your organisation, edited by several members at once, with formulas. |
+| **MouseMover** | Notices when you are idle, warns you, then moves the mouse so the game does not kick you for inactivity. |
+| **CitizenHauler** | Trading companion with live UEX Corp data, route planning and a Datarunner mode. |
+| **BetterPicture** | Photo mode: high-quality screenshots (RAW, 16-bit) with a colour filter overlay. |
 
-Für eine schnelle Navigation kannst du auch die Schaltflächen am Anfang dieser Seite verwenden.
+## Security and trust
 
-## Mach mit!
+The core is closed source. So that you do not have to take that on faith, [SECURITY.md](../SECURITY.md) lists exactly which hosts the application contacts, which files it writes, what its input listener does and how the add-on trust model works, in a form you can verify with a firewall or Process Monitor. It also states plainly what is not there: no code signing, no independent audit, no add-on sandbox.
 
-Dein Feedback und deine Ideen sind das Lebenselixier dieses Projekts. Ob du einen Fehler gefunden hast, einen Vorschlag für ein neues Addon hast oder selbst beitragen möchtest – unser GitHub Issue Council ist der beste Ort dafür.
+## Documentation
 
-➡️ **[Beteilige dich an der Diskussion auf GitHub](https://github.com/BlugDeg/SCOverlay-Updates/issues)**
+- [User manual](MANUAL.md) (English) · [Benutzerhandbuch](MANUAL.de.md) (Deutsch)
+- [SDK manual](SDK_MANUAL.md) for add-on developers (English) · [SDK-Handbuch](SDK_MANUAL.de.md) (Deutsch)
+- [Security and privacy](../SECURITY.md) (English) · [Sicherheit und Datenschutz](../SECURITY.de.md) (Deutsch)
+- [Patch notes](https://scoverlay.it-en.ch/patchnotes) on the website
+
+## Get involved
+
+- **Found a bug or have an idea?** Open an [issue](https://github.com/BlugDeg/SCOverlay-Updates/issues). German is as welcome as English.
+- **Want to build an add-on?** The [SDK manual](SDK_MANUAL.md) takes you from an empty project to a working tile in a few minutes. An add-on is your work and stays yours.
+
+## License
+
+SCOverlay is free of charge under a proprietary licence: use it freely, do not redistribute or modify the application itself. Add-ons you write belong to you. Full text in [LICENSE.md](../LICENSE.md).
